@@ -101,11 +101,6 @@ def peak_shaving_app():
     
     st.plotly_chart(fig, use_container_width=True)
 
-    # Expander para mostrar os dados brutos da simulação, caso o usuário queira ver os detalhes
-    with st.expander("Ver tabela com os dados da simulação"):
-        st.dataframe(df_simulacao)
-        st.caption("Valores negativos na coluna 'Potência do BESS (MW)' indicam que a bateria está carregando.")
-
 
 
 def bms():
