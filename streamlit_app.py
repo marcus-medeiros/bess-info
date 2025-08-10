@@ -10,7 +10,7 @@ import arquivos
 
 # =============================================================================
 
-AUTOR = "Marcus Vinícius de Medeiros"
+AUTOR = "Marcus Vinícius"
 # =============================================================================
 # CONFIGURAÇÃO DA PÁGINA
 # st.set_page_config deve ser o primeiro comando Streamlit a ser executado
@@ -27,6 +27,7 @@ st.set_page_config(
 # Usando a biblioteca streamlit-option-menu
 # =============================================================================
 with st.sidebar:
+    st.markdown("---")
     st.markdown(f"**Autor:** `{AUTOR}`")
     st.markdown("---")
 
