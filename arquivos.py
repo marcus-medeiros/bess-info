@@ -30,7 +30,7 @@ def app ():
     st.plotly_chart(fig_bess, use_container_width=True)
     st.info("Passe o mouse sobre os gráficos para ver os valores detalhados.")
 
-def bess():
+def bms():
     # --- PÁGINA: BMS - GESTÃO E SEGURANÇA ---
     st.header("BMS: Gestão e Segurança da Bateria")
     st.markdown(
@@ -97,7 +97,7 @@ def bess():
         
     with col2:
         st.subheader("Balanceamento Ativo")
-        st.markdown("Este método **transfere a carga** de células com SoC mais alto para aquelas com SoC mais baixo, sem dissipar a energia como calor. [0: 296]")
+        st.markdown("Este método **transfere a carga** de células com SoC mais alto para aquelas com SoC mais baixo, sem dissipar a energia como calor.")
 
         st.info("**Tipos Comuns:**")
         st.markdown("""
@@ -116,36 +116,36 @@ def bess():
 
     # --- PÁGINA: BMS - ESTIMAÇÃO DE ESTADOS ---
     st.header("BMS: Estimação de Estados da Bateria")
-    st.markdown("Além do controle e segurança, o BMS é crucial para estimar parâmetros que indicam a condição atual da bateria. [0: 2032]")
+    st.markdown("Além do controle e segurança, o BMS é crucial para estimar parâmetros que indicam a condição atual da bateria. ")
 
     tab_soc, tab_soh, tab_sop = st.tabs(["**Estado de Carga (SoC)**", "**Estado de Saúde (SoH)**", "**Estado de Potência (SoP)**"])
 
     with tab_soc:
         st.subheader("Estimação do SoC (State of Charge)")
-        st.markdown("Indica a capacidade disponível em uma bateria como uma porcentagem de sua capacidade nominal. [0: 2045, 2048]")
+        st.markdown("Indica a capacidade disponível em uma bateria como uma porcentagem de sua capacidade nominal.")
         st.markdown("**Principais Métodos de Estimação:**")
         st.markdown("""
-        - **Método Baseado em Tensão:** O mais simples, correlaciona a tensão terminal com o SoC, mas é pouco preciso devido a efeitos de temperatura, envelhecimento e corrente. [0: 2049, 2050]
-        - **Contagem de Coulomb:** Monitora a corrente de entrada e saída para calcular a carga restante. [0_start]É mais preciso, mas propenso a erros cumulativos. [0: 2058, 2059]
-        - **Filtro de Kalman:** Usa um modelo da bateria para prever o SoC, sendo mais robusto a ruídos e incertezas de medição. [0: 2060, 2070]
-        - **Redes Neurais:** Aprende com os ciclos de carga/descarga anteriores para estimar o SoC, com tendência a maior precisão ao longo do tempo. [0: 2072, 2073]
-        - **Espectroscopia de Impedância (EIS):** Um dos mais precisos, mas sua complexidade e custo o tornam pouco usual para a maioria das aplicações de BMS. [0: 2082, 2087]
+        - **Método Baseado em Tensão:** O mais simples, correlaciona a tensão terminal com o SoC, mas é pouco preciso devido a efeitos de temperatura, envelhecimento e corrente.
+        - **Contagem de Coulomb:** Monitora a corrente de entrada e saída para calcular a carga restante. É mais preciso, mas propenso a erros cumulativos. 
+        - **Filtro de Kalman:** Usa um modelo da bateria para prever o SoC, sendo mais robusto a ruídos e incertezas de medição.
+        - **Redes Neurais:** Aprende com os ciclos de carga/descarga anteriores para estimar o SoC, com tendência a maior precisão ao longo do tempo.
+        - **Espectroscopia de Impedância (EIS):** Um dos mais precisos, mas sua complexidade e custo o tornam pouco usual para a maioria das aplicações de BMS.
         """)
 
     with tab_soh:
         st.subheader("Estimação do SoH (State of Health)")
-        st.markdown("Indica a capacidade atual de uma bateria em comparação com sua capacidade nominal quando nova. [0: 2106] [0_start]Um SoH de 100% significa que a bateria não teve perda de capacidade. [0: 2107] [0_start]Ajuda a prever a vida útil restante. [0: 2108]")
+        st.markdown("Indica a capacidade atual de uma bateria em comparação com sua capacidade nominal quando nova. Um SoH de 100% significa que a bateria não teve perda de capacidade. Ajuda a prever a vida útil restante.")
         st.markdown("**Principais Métodos de Estimação:**")
         st.markdown("""
-        - **Comparação de Capacidade:** Compara a capacidade máxima atual (obtida com um ciclo completo) com a capacidade original. [0: 2118, 2119]
-        - **Estimativa Baseada em Modelo:** Usa modelos matemáticos que representam o comportamento da bateria e os ajusta com dados reais. [0: 2120]
-        - **Aprendizado de Máquina:** Utiliza algoritmos (como SVM ou Redes Neurais) para prever o SoH a partir de dados históricos. [0: 2131]
-        - **Medição de Impedância:** O SoH é determinado medindo a impedância interna da bateria, que aumenta com o envelhecimento. [0: 2132]
+        - **Comparação de Capacidade:** Compara a capacidade máxima atual (obtida com um ciclo completo) com a capacidade original.
+        - **Estimativa Baseada em Modelo:** Usa modelos matemáticos que representam o comportamento da bateria e os ajusta com dados reais. 
+        - **Aprendizado de Máquina:** Utiliza algoritmos (como SVM ou Redes Neurais) para prever o SoH a partir de dados históricos.
+        - **Medição de Impedância:** O SoH é determinado medindo a impedância interna da bateria, que aumenta com o envelhecimento. 
         """)
 
     with tab_sop:
         st.subheader("Estimação do SoP (State of Power)")
-        st.markdown("Indica a capacidade da bateria de fornecer ou absorver uma determinada quantidade de energia em um instante. É crucial para o gerenciamento de energia em aplicações com rápidas variações de potência, como veículos elétricos e BESS. [0: 2156]")
+        st.markdown("Indica a capacidade da bateria de fornecer ou absorver uma determinada quantidade de energia em um instante. É crucial para o gerenciamento de energia em aplicações com rápidas variações de potência, como veículos elétricos e BESS.")
         st.markdown("A equação para o SoP é definida como:")
         st.latex(r'''
         SoP(t) = \frac{P_{max}(t)}{P_{nominal}(t)} \times 100 \ [\%] 

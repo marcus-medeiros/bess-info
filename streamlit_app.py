@@ -69,8 +69,7 @@ if selected == "Página Inicial":
 
 # --- PÁGINA: O QUE É BESS? ---
 if selected == "BMS":
-    arquivos.bess()
-
+    arquivos.bms()
 
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
 if selected == "Aplicações e Gráficos":
