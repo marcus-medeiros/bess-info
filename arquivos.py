@@ -128,7 +128,26 @@ def bms():
         st.markdown("**Principais Métodos de Estimação:**")
         st.markdown("""
         - **Método Baseado em Tensão:** O mais simples, correlaciona a tensão terminal com o SoC, mas é pouco preciso devido a efeitos de temperatura, envelhecimento e corrente.
-        - **Contagem de Coulomb:** Monitora a corrente de entrada e saída para calcular a carga restante. É mais preciso, mas propenso a erros cumulativos. 
+        - **Contagem de Coulomb:** Monitora a corrente de entrada e saída para calcular a carga restante. É mais preciso, mas propenso a erros cumulativos.""")
+            st.markdown("""
+            Uma das equações mais importantes para um BESS é a que descreve seu estado de carga. A forma mais simples (desconsiderando perdas complexas) é a integração da potência ao longo do tempo.
+            
+            Abaixo, a equação em formato LaTeX:
+            """)
+            # Usando st.latex para renderizar equações matemáticas
+            st.latex(r'''
+            SoC(t) = SoC(t_0) + \frac{1}{C_{rated}} \int_{t_0}^{t} \eta \cdot P_{bateria}(\tau) d\tau
+            ''')
+            st.markdown(r'''
+            Onde:
+            - $SoC(t)$ é o estado de carga no tempo $t$.
+            - $C_{rated}$ é a capacidade nominal da bateria (ex: em MWh).
+            - $P_{bateria}(\tau)$ é a potência da bateria no tempo $\tau$ (positiva para carga, negativa para descarga).
+            - $\eta$ é a eficiência de carga/descarga.
+            ''')
+
+            st.markdown("---")
+        st.markdown("""
         - **Filtro de Kalman:** Usa um modelo da bateria para prever o SoC, sendo mais robusto a ruídos e incertezas de medição.
         - **Redes Neurais:** Aprende com os ciclos de carga/descarga anteriores para estimar o SoC, com tendência a maior precisão ao longo do tempo.
         - **Espectroscopia de Impedância (EIS):** Um dos mais precisos, mas sua complexidade e custo o tornam pouco usual para a maioria das aplicações de BMS.
