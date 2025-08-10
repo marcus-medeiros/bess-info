@@ -68,7 +68,7 @@ if selected == "Página Inicial":
     st.warning("Esta seção é ideal para textos explicativos, imagens e diagramas.")
 
 # --- PÁGINA: O QUE É BESS? ---
-if selected == "BESS":
+if selected == "BMS":
     arquivos.bess()
 
 
