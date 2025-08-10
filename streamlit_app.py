@@ -56,9 +56,6 @@ if selected == "Página Inicial":
     """)
     st.image("https://via.placeholder.com/800x300.png?text=Imagem+Conceitual+de+um+BESS", caption="Substitua por uma imagem real de um BESS.")
 
-
-# --- PÁGINA: O QUE É BESS? ---
-if selected == "O que é BESS?":
     st.header("O que é um Sistema de Armazenamento de Energia por Baterias (BESS)?")
     st.markdown("""
     Um BESS é uma solução tecnológica que utiliza baterias recarregáveis para armazenar energia elétrica e disponibilizá-la posteriormente. 
@@ -69,6 +66,10 @@ if selected == "O que é BESS?":
     3.  **Conversor de Potência (PCS - Power Conversion System):** Converte a corrente contínua (CC) das baterias em corrente alternada (CA) para a rede elétrica, e vice-versa.
     """)
     st.warning("Esta seção é ideal para textos explicativos, imagens e diagramas.")
+
+# --- PÁGINA: O QUE É BESS? ---
+if selected == "BESS":
+    arquivos.bess()
 
 
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
