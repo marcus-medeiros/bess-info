@@ -32,7 +32,7 @@ with st.sidebar:
         icons=["house", "question-circle", "bar-chart-line", "code-slash"],  # Opcional (ícones do Bootstrap)
         menu_icon="cast",  # Opcional
         default_index=0,  # Opcional
-        orientation="horinzotal", # "horizontal" ou "vertical"
+        orientation="vertical", # "horizontal" ou "vertical"
     )
 
 # =============================================================================
