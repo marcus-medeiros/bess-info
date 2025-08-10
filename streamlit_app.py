@@ -54,7 +54,7 @@ if selected == "Página Inicial":
     - **Aplicações e Gráficos:** Veja casos de uso e analise dados interativos.
     - **Equações e Código:** Explore os modelos matemáticos e códigos de simulação por trás da tecnologia.
     """)
-    st.image("bess_foto.png", caption="BESS")
+    st.image("bess_foto.png", caption="BESS", width = 200)
 
     st.header("O que é um Sistema de Armazenamento de Energia por Baterias (BESS)?")
     st.markdown("""
