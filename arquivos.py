@@ -132,11 +132,10 @@ def bms():
         st.markdown("""
             Uma das equações mais importantes para um BESS é a que descreve seu estado de carga. A forma mais simples (desconsiderando perdas complexas) é a integração da potência ao longo do tempo.
             
-            Abaixo, a equação em formato LaTeX:
             """)
             # Usando st.latex para renderizar equações matemáticas
         st.latex(r'''
-            SoC(t) = SoC(t_0) + \frac{1}{C_{rated}} \int_{t_0}^{t} \eta \cdot P_{bateria}(\tau) d\tau
+            SoC(t) = SoC(t_0) + \frac{1}{C_{rated}} \int_{t_0}^{t} \eta I_{bateria}(\tau) d\tau
             ''')
         st.markdown(r'''
             Onde:
