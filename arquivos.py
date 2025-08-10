@@ -144,7 +144,6 @@ def bms():
             - $SoC(t)$ é o estado de carga no tempo $t$.
             - $C_{rated}$ é a capacidade nominal da bateria (ex: em MWh).
             - $I_{bateria}(\tau)$ é a corrente que alimenta as baterias no instante $\tau$ (positiva para carga, negativa para descarga).
-            - $\eta$ é a eficiência de carga/descarga.
             ''')
 
         st.markdown("---")
