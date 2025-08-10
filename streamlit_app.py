@@ -3,6 +3,13 @@ import pandas as pd
 import plotly.express as px
 from streamlit_option_menu import option_menu
 
+
+# =============================================================================
+# BIBLIOTECAS DE ASSUNTOS
+
+
+# =============================================================================
+
 # =============================================================================
 # CONFIGURAÇÃO DA PÁGINA
 # st.set_page_config deve ser o primeiro comando Streamlit a ser executado
@@ -25,7 +32,7 @@ with st.sidebar:
         icons=["house", "question-circle", "bar-chart-line", "code-slash"],  # Opcional (ícones do Bootstrap)
         menu_icon="cast",  # Opcional
         default_index=0,  # Opcional
-        orientation="vertical", # "horizontal" ou "vertical"
+        orientation="horinzotal", # "horizontal" ou "vertical"
     )
 
 # =============================================================================
