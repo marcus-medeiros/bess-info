@@ -27,10 +27,6 @@ st.set_page_config(
 # Usando a biblioteca streamlit-option-menu
 # =============================================================================
 with st.sidebar:
-    st.markdown("---")
-    st.markdown(f"**Autor:** `{AUTOR}`")
-    st.markdown("---")
-
     selected = option_menu(
         menu_title="Menu",  # Obrigatório
         options=["Página Inicial", "BMS", "PCS", "EMS", "Aplicações e Gráficos", "Equações e Código"],  # Obrigatório
@@ -45,6 +41,8 @@ with st.sidebar:
 # A lógica para exibir a página selecionada no menu
 # =============================================================================
 
+st.markdown(f"**Autor:** `{AUTOR}`")
+st.markdown("---")
 # --- PÁGINA INICIAL ---
 if selected == "Página Inicial":
     st.title("🔋 Análise e Informações sobre BESS")
