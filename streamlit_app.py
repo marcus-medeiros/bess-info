@@ -27,10 +27,10 @@ st.set_page_config(
 # =============================================================================
 with st.sidebar:
     selected = option_menu(
-        menu_title="Menu Principal",  # Obrigatório
-        options=["Página Inicial", "O que é BESS?", "Aplicações e Gráficos", "Equações e Código"],  # Obrigatório
-        icons=["house", "question-circle", "bar-chart-line", "code-slash"],  # Opcional (ícones do Bootstrap)
-        menu_icon="cast",  # Opcional
+        menu_title="Menu",  # Obrigatório
+        options=["Página Inicial", "BMS", "PCS", "EMS", "Aplicações e Gráficos", "Equações e Código"],  # Obrigatório
+        icons=["house", "folder", "folder", "folder", "question-circle", "bar-chart-line", "code-slash"],  # Opcional (ícones do Bootstrap)
+        menu_icon="cloud",  # Opcional
         default_index=0,  # Opcional
         orientation="vertical", # "horizontal" ou "vertical"
     )
