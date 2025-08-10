@@ -83,7 +83,7 @@ def peak_shaving_app():
         x='Hora', 
         y='Potência (MW)', 
         color='Fonte de Potência',
-        title='Simulação de Peak Shaving: Fornecimento de Potência (Rede vs. BESS)',
+        title='Peak Shaving: Fornecimento de Potência (Rede vs. BESS)',
         labels={'Hora': 'Hora do Dia', 'Potência (MW)': 'Potência Fornecida (MW)'},
         color_discrete_map={
             'Potência da Rede (MW)': 'royalblue',
@@ -93,7 +93,7 @@ def peak_shaving_app():
     
     # Ajustes finos no layout do gráfico
     fig.update_layout(
-        title_x=0.5,
+        title_x=0.2,
         xaxis=dict(tickmode='linear', dtick=2, title_text='Hora do Dia'),
         yaxis_title="Potência (MW)",
         legend_title_text='Fonte de Energia'
