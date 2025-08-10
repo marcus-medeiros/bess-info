@@ -6,6 +6,9 @@ from streamlit_option_menu import option_menu
 
 
 def peak_shaving_app():
+    """
+    Cria a página de simulação de Peak Shaving no Streamlit.
+    """
     st.header("Simulação de Aplicação: Peak Shaving")
     st.markdown("""
     O **Peak Shaving** (redução de picos de demanda) é uma das principais aplicações de um BESS. O objetivo é utilizar a energia armazenada nas baterias para alimentar as cargas durante os horários em que a demanda de energia da rede elétrica atinge seu pico, geralmente entre **18:00 e 21:00**.
@@ -18,8 +21,8 @@ def peak_shaving_app():
     
     Observe como a potência da rede é "achatada" durante o horário de pico, enquanto o BESS assume a responsabilidade.
     """)
-    st.markdown("---")
-    # --- GERAÇÃO DE DADOS PARA A SIMULAÇÃO ---
+
+    # --- 1. GERAÇÃO DE DADOS PARA A SIMULAÇÃO ---
     horas = list(range(24))
     
     # Demanda de carga típica ao longo do dia, com um pico acentuado à noite
@@ -28,33 +31,28 @@ def peak_shaving_app():
         138, 142, 150, 160, 180, 250, 255, 252, 248, 180, 150, 110
     ]
     
-    # Operação do BESS e da Rede
+    # Listas para armazenar os resultados da simulação
     potencia_bess = []
     potencia_rede = []
     
-    # Potência que o BESS vai fornecer no pico
-    potencia_pico_bess = 150 # MW
+    potencia_pico_bess = 150 # Potência máxima que o BESS vai fornecer no pico (MW)
 
     for hora, demanda in zip(horas, demanda_total):
         # Horário de pico (18:00 às 21:00) -> BESS descarrega
         if 18 <= hora <= 21:
-            # BESS fornece a maior parte da energia
             bess_fornece = min(demanda, potencia_pico_bess)
             potencia_bess.append(bess_fornece)
-            # A rede fornece apenas o restante, "achatando" o pico
             potencia_rede.append(demanda - bess_fornece)
         # Horário de carga (madrugada, 00:00 às 04:00) -> BESS carrega
         elif 0 <= hora <= 4:
-            # BESS consome energia da rede para carregar
-            potencia_bess.append(-50) # Carregando com 50 MW
-            # A rede fornece a demanda da carga + a carga do BESS
-            potencia_rede.append(demanda - (-50)) 
+            potencia_bess.append(-50) # Carregando com 50 MW (valor negativo)
+            potencia_rede.append(demanda - (-50)) # Rede atende a demanda + carga do BESS
         # Demais horários -> BESS fica em espera
         else:
             potencia_bess.append(0)
             potencia_rede.append(demanda)
 
-    # Criando o DataFrame
+    # Criando o DataFrame com os dados da simulação
     df_simulacao = pd.DataFrame({
         'Hora': horas,
         'Demanda Total (MW)': demanda_total,
@@ -62,10 +60,10 @@ def peak_shaving_app():
         'Potência do BESS (MW)': potencia_bess
     })
     
-    # --- CRIAÇÃO DO GRÁFICO ---
+    # --- 2. PREPARAÇÃO DOS DADOS PARA O GRÁFICO ---
     
-    # Para o gráfico de área empilhada, precisamos "derreter" (melt) o dataframe
-    # para ter uma coluna para a fonte de energia e outra para o valor.
+    # Para o gráfico de área empilhada, usamos o método "melt" do Pandas.
+    # Isso transforma as colunas de potência em uma única coluna de "Fonte" e uma de "Valor".
     df_plot = df_simulacao.melt(
         id_vars='Hora', 
         value_vars=['Potência da Rede (MW)', 'Potência do BESS (MW)'],
@@ -73,10 +71,13 @@ def peak_shaving_app():
         value_name='Potência (MW)'
     )
     
-    # Removemos os valores negativos do BESS para não poluir o gráfico de fornecimento
+    # Removemos os valores negativos (carga do BESS) para não exibi-los no gráfico de FORNECIMENTO.
+    # A função clip garante que qualquer valor abaixo de 0 se torne 0.
     df_plot['Potência (MW)'] = df_plot['Potência (MW)'].clip(lower=0)
 
-    # Gráfico de área empilhada
+    # --- 3. CRIAÇÃO E EXIBIÇÃO DO GRÁFICO ---
+    
+    # Usamos Plotly Express para criar o gráfico de área
     fig = px.area(
         df_plot, 
         x='Hora', 
@@ -90,12 +91,22 @@ def peak_shaving_app():
         }
     )
     
+    # Ajustes finos no layout do gráfico
     fig.update_layout(
         title_x=0.5,
-        xaxis=dict(tickmode='linear', dtick=2),
+        xaxis=dict(tickmode='linear', dtick=2, title_text='Hora do Dia'),
         yaxis_title="Potência (MW)",
         legend_title_text='Fonte de Energia'
     )
+    
+    st.plotly_chart(fig, use_container_width=True)
+
+    # Expander para mostrar os dados brutos da simulação, caso o usuário queira ver os detalhes
+    with st.expander("Ver tabela com os dados da simulação"):
+        st.dataframe(df_simulacao)
+        st.caption("Valores negativos na coluna 'Potência do BESS (MW)' indicam que a bateria está carregando.")
+
+
 
 def bms():
     # --- PÁGINA: BMS - BALANCEAMENTO ---
