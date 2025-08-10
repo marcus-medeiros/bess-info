@@ -71,6 +71,12 @@ if selected == "Página Inicial":
 if selected == "BMS":
     arquivos.bms()
 
+if selected == "PCS":
+    arquivos.pcs()
+
+if selected == "EMS":
+    arquivos.ems()
+
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
 if selected == "Aplicações e Gráficos":
     arquivos.app()

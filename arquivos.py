@@ -172,3 +172,35 @@ def bms():
         SoP(t) = \frac{P_{max}(t)}{P_{nominal}(t)} \times 100 \ [\%] 
         ''')
         st.caption("Onde $P_{max}(t)$ é a potência de pico e $P_{nominal}(t)$ é a potência nominal.")
+
+def pcs():
+    # --- PÁGINA: PCS - CONVERSÃO DE POTÊNCIA ---
+    st.header("PCS (Power Conversion System)")
+    st.markdown("O PCS é o cérebro e a força do BESS, responsável por converter a energia entre Corrente Contínua (CC) das baterias e Corrente Alternada (CA) da rede elétrica, e por controlar ativamente o fluxo de potência.")
+
+    st.subheader("Principais Funções e Topologias de Controle")
+    st.markdown("A principal funcionalidade do controle do PCS é operar em diferentes modos, dependendo do estado da rede elétrica. A transição suave (*seamless*) entre esses modos é fundamental para a estabilidade do sistema.")
+
+    col1, col2 = st.columns(2, gap="large")
+
+    with col1:
+        st.info("### Modo Seguidor de Rede (Grid-Following)")
+        st.markdown("""
+        - Também conhecido como **Grid-Tied** ou **Grid-Supporting**.
+        - Opera quando a rede elétrica principal está **ativa e estável**.
+        - O PCS **sincroniza** com a frequência e tensão da rede.
+        - Atua como uma fonte de corrente, injetando ou absorvendo potência ativa (P) e reativa (Q) conforme os comandos recebidos.
+        - Não consegue operar de forma independente (ilhado).
+        """)
+
+    with col2:
+        st.info("### Modo Formador de Rede (Grid-Forming)")
+        st.markdown("""
+        - Essencial para a operação em **modo ilhado** (desconectado da rede principal).
+        - O PCS **cria e estabelece** a referência de tensão e frequência da microrrede, atuando como uma fonte de tensão.
+        - Permite o *black start*, ou seja, a capacidade de reenergizar uma parte da rede após um apagão.
+        - Pelo menos uma fonte na microrrede (geralmente um BESS ou gerador síncrono) deve ter essa capacidade.
+        """)
+
+def ems():
+    st.markdown("""Em produção""")
