@@ -127,7 +127,9 @@ def bms():
         st.markdown("Indica a capacidade disponível em uma bateria como uma porcentagem de sua capacidade nominal.")
         st.markdown("**Principais Métodos de Estimação:**")
         st.markdown("""
-        - **Método Baseado em Tensão:** O mais simples, correlaciona a tensão terminal com o SoC, mas é pouco preciso devido a efeitos de temperatura, envelhecimento e corrente.
+        - **Método Baseado em Tensão:** O mais simples, correlaciona a tensão terminal com o SoC, mas é pouco preciso devido a efeitos de temperatura, envelhecimento e corrente.""")
+        st.markdown("---")
+        st.markdown("""
         - **Contagem de Coulomb:** Monitora a corrente de entrada e saída para calcular a carga restante. É mais preciso, mas propenso a erros cumulativos.""")
         st.markdown("""
             Uma das equações mais importantes para um BESS é a que descreve seu estado de carga. A forma mais simples (desconsiderando perdas complexas) é a integração da potência ao longo do tempo.
