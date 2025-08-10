@@ -18,7 +18,7 @@ def peak_shaving_app():
     
     Observe como a potência da rede é "achatada" durante o horário de pico, enquanto o BESS assume a responsabilidade.
     """)
-
+    st.markdown("---")
     # --- GERAÇÃO DE DADOS PARA A SIMULAÇÃO ---
     horas = list(range(24))
     
