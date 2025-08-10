@@ -36,7 +36,7 @@ def bms():
     # --- PÁGINA: BMS - GESTÃO E SEGURANÇA ---
     st.header("BMS: Gestão e Segurança da Bateria")
     st.markdown(
-        "O **Battery Management System (BMS)** é um sistema eletrônico responsável por monitorar e gerenciar um sistema de baterias, garantindo seu desempenho, segurança e durabilidade. [0: 22, 23] [0_start]Ele pode atuar em diversos níveis, desde a célula individual até o rack completo de baterias. [0: 22]"
+        "O **Battery Management System (BMS)** é um sistema eletrônico responsável por monitorar e gerenciar um sistema de baterias, garantindo seu desempenho, segurança e durabilidade. Ele pode atuar em diversos níveis, desde a célula individual até o rack completo de baterias."
     )
 
     st.subheader("Cuidados Essenciais: A Fuga Térmica (Thermal Runaway)")
@@ -44,7 +44,7 @@ def bms():
 
     with st.expander("Clique aqui para saber mais sobre a Fuga Térmica"):
         st.markdown(
-            "A fuga térmica é uma condição de autoaquecimento rápido de uma célula, originada de uma reação química exotérmica entre os eletrodos. [0: 44] [0_start]Durante este evento, a célula libera sua energia armazenada de forma abrupta e descontrolada. [0: 45]"
+            "A fuga térmica é uma condição de autoaquecimento rápido de uma célula, originada de uma reação química exotérmica entre os eletrodos. Durante este evento, a célula libera sua energia armazenada de forma abrupta e descontrolada. [0: 45]"
         )
         
         col1, col2 = st.columns(2)
