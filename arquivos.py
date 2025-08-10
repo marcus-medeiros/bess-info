@@ -135,13 +135,13 @@ def bms():
             """)
             # Usando st.latex para renderizar equações matemáticas
         st.latex(r'''
-            SoC(t) = SoC(t_0) + \frac{1}{C_{rated}} \int_{t_0}^{t} \eta I_{bateria}(\tau) d\tau
+            SoC(t) = SoC(t_0) + \frac{1}{C_{rated}} \int_{t_0}^{t} I_{bateria}(\tau) d\tau
             ''')
         st.markdown(r'''
             Onde:
             - $SoC(t)$ é o estado de carga no tempo $t$.
             - $C_{rated}$ é a capacidade nominal da bateria (ex: em MWh).
-            - $P_{bateria}(\tau)$ é a potência da bateria no tempo $\tau$ (positiva para carga, negativa para descarga).
+            - $I_{bateria}(\tau)$ é a corrente que alimenta as baterias no instante $\tau$ (positiva para carga, negativa para descarga).
             - $\eta$ é a eficiência de carga/descarga.
             ''')
 
