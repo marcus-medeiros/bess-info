@@ -27,7 +27,7 @@ st.set_page_config(
 # Usando a biblioteca streamlit-option-menu
 # =============================================================================
 with st.sidebar:
-    st.markdown("Autor: {AUTOR}")
+    st.markdown(f"**Autor:** `{AUTOR}`")
     st.markdown("---")
 
     selected = option_menu(
