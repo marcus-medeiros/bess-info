@@ -97,6 +97,8 @@ def peak_shaving_app():
         legend_title_text='Fonte de Energia'
     )
 
+def bms():
+
     # --- PÁGINA: BMS - BALANCEAMENTO ---
     st.header("BMS: Métodos de Balanceamento de Células")
     st.markdown("O balanceamento é uma função crítica do BMS para garantir um Estado de Carga (SoC) uniforme entre todas as células, o que maximiza a capacidade utilizável e a vida útil da bateria. Existem duas abordagens principais: **Passiva** e **Ativa**.")
