@@ -79,7 +79,7 @@ if selected == "EMS":
 
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
 if selected == "Aplicações e Gráficos":
-    arquivos.app()
+    arquivos.peak_shaving_app()
     
 # --- PÁGINA: EQUAÇÕES E CÓDIGO ---
 if selected == "Equações e Código":

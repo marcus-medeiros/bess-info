@@ -1,75 +1,101 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import numpy as np
 from streamlit_option_menu import option_menu
 
 
-def app ():
-    st.header("Aplicações e Análise Gráfica")
+def peak_shaving_app():
+    st.header("Simulação de Aplicação: Peak Shaving")
     st.markdown("""
-    BESS são usados em diversas aplicações, como *peak shaving*, regulação de frequência, integração de fontes renováveis e backup de energia.
+    O **Peak Shaving** (redução de picos de demanda) é uma das principais aplicações de um BESS. O objetivo é utilizar a energia armazenada nas baterias para alimentar as cargas durante os horários em que a demanda de energia da rede elétrica atinge seu pico, geralmente entre **18:00 e 21:00**.
     
-    Abaixo, um exemplo de gráfico interativo que simula um ciclo de carga e descarga de um BESS para arbitragem de energia (comprar na baixa, vender na alta).
+    Isso reduz os custos com tarifas de demanda e alivia a sobrecarga na rede elétrica.
+    
+    O gráfico abaixo simula este cenário:
+    - **Azul (Rede):** Potência fornecida pela rede elétrica.
+    - **Vermelho (BESS):** Potência fornecida pelo BESS.
+    
+    Observe como a potência da rede é "achatada" durante o horário de pico, enquanto o BESS assume a responsabilidade.
     """)
 
-    # Criando dados de exemplo com Pandas
-    data = {
-        'Hora': list(range(24)),
-        'Preço Energia (R$/MWh)': [120, 110, 105, 100, 115, 150, 200, 250, 280, 300, 290, 270, 260, 250, 280, 350, 450, 550, 600, 500, 400, 300, 200, 150],
-        'Operação BESS (MW)': [-50, -50, -50, -50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 0, 0, 0, -25, -25] # Negativo = Carregando, Positivo = Descarregando
-    }
-    df = pd.DataFrame(data)
+    # --- GERAÇÃO DE DADOS PARA A SIMULAÇÃO ---
+    horas = list(range(24))
+    
+    # Demanda de carga típica ao longo do dia, com um pico acentuado à noite
+    demanda_total = [
+        80, 75, 70, 65, 68, 80, 100, 110, 120, 130, 135, 140, 
+        138, 142, 150, 160, 180, 250, 255, 252, 248, 180, 150, 110
+    ]
+    
+    # Operação do BESS e da Rede
+    potencia_bess = []
+    potencia_rede = []
+    
+    # Potência que o BESS vai fornecer no pico
+    potencia_pico_bess = 150 # MW
 
-    # Gráfico de Preço da Energia
-    fig_preco = px.line(df, x='Hora', y='Preço Energia (R$/MWh)', title='Preço Spot da Energia ao Longo do Dia', markers=True)
-    fig_preco.update_layout(title_x=0.5)
-    st.plotly_chart(fig_preco, use_container_width=True)
+    for hora, demanda in zip(horas, demanda_total):
+        # Horário de pico (18:00 às 21:00) -> BESS descarrega
+        if 18 <= hora <= 21:
+            # BESS fornece a maior parte da energia
+            bess_fornece = min(demanda, potencia_pico_bess)
+            potencia_bess.append(bess_fornece)
+            # A rede fornece apenas o restante, "achatando" o pico
+            potencia_rede.append(demanda - bess_fornece)
+        # Horário de carga (madrugada, 00:00 às 04:00) -> BESS carrega
+        elif 0 <= hora <= 4:
+            # BESS consome energia da rede para carregar
+            potencia_bess.append(-50) # Carregando com 50 MW
+            # A rede fornece a demanda da carga + a carga do BESS
+            potencia_rede.append(demanda - (-50)) 
+        # Demais horários -> BESS fica em espera
+        else:
+            potencia_bess.append(0)
+            potencia_rede.append(demanda)
 
-    # Gráfico de Operação do BESS
-    fig_bess = px.bar(df, x='Hora', y='Operação BESS (MW)', title='Operação do BESS (Carga/Descarga)', color='Operação BESS (MW)',
-                      color_continuous_scale=px.colors.diverging.RdYlBu_r)
-    fig_bess.update_layout(title_x=0.5)
-    st.plotly_chart(fig_bess, use_container_width=True)
-    st.info("Passe o mouse sobre os gráficos para ver os valores detalhados.")
-
-def bms():
-    # --- PÁGINA: BMS - GESTÃO E SEGURANÇA ---
-    st.header("BMS: Gestão e Segurança da Bateria")
-    st.markdown(
-        "O **Battery Management System (BMS)** é um sistema eletrônico responsável por monitorar e gerenciar um sistema de baterias, garantindo seu desempenho, segurança e durabilidade. Ele pode atuar em diversos níveis, desde a célula individual até o rack completo de baterias."
+    # Criando o DataFrame
+    df_simulacao = pd.DataFrame({
+        'Hora': horas,
+        'Demanda Total (MW)': demanda_total,
+        'Potência da Rede (MW)': potencia_rede,
+        'Potência do BESS (MW)': potencia_bess
+    })
+    
+    # --- CRIAÇÃO DO GRÁFICO ---
+    
+    # Para o gráfico de área empilhada, precisamos "derreter" (melt) o dataframe
+    # para ter uma coluna para a fonte de energia e outra para o valor.
+    df_plot = df_simulacao.melt(
+        id_vars='Hora', 
+        value_vars=['Potência da Rede (MW)', 'Potência do BESS (MW)'],
+        var_name='Fonte de Potência', 
+        value_name='Potência (MW)'
     )
+    
+    # Removemos os valores negativos do BESS para não poluir o gráfico de fornecimento
+    df_plot['Potência (MW)'] = df_plot['Potência (MW)'].clip(lower=0)
 
-    st.subheader("Cuidados Essenciais: A Fuga Térmica (Thermal Runaway)")
-    st.warning("A proteção do sistema de baterias é uma das principais funções de um BMS. Um dos maiores riscos em baterias de Íon-Lítio é a **fuga térmica**.")
-
-    with st.expander("Clique aqui para saber mais sobre a Fuga Térmica"):
-        st.markdown(
-            "A fuga térmica é uma condição de autoaquecimento rápido de uma célula, originada de uma reação química exotérmica entre os eletrodos. Durante este evento, a célula libera sua energia armazenada de forma abrupta e descontrolada. [0: 45]"
-        )
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            st.error("Causas Principais:")
-            st.markdown("""
-            - Sobrecarga ou descarga excessiva
-            - Alta corrente de operação 
-            - Operação fora da faixa de temperatura permitida 
-            - O autoaquecimento pode iniciar-se a temperaturas entre 70°C e 90°C. 
-            """)
-        
-        with col2:
-            st.error("Consequências:")
-            st.markdown("""
-            - Rápido aumento da temperatura interna da célula, podendo atingir **600°C** 
-            - Aumento da pressão interna devido à vaporização e decomposição do eletrólito 
-            - Risco de incêndio ou explosão da bateria 
-            - Fusão de componentes internos como o separador e coletores de corrente 
-            """)
-        
-        st.success(
-            "O BMS monitora continuamente as condições da bateria e atua para interromper situações de risco, "
-            "desligando a bateria ou ajustando as taxas de carga/descarga para prevenir a fuga térmica. "
-        )
+    # Gráfico de área empilhada
+    fig = px.area(
+        df_plot, 
+        x='Hora', 
+        y='Potência (MW)', 
+        color='Fonte de Potência',
+        title='Simulação de Peak Shaving: Fornecimento de Potência (Rede vs. BESS)',
+        labels={'Hora': 'Hora do Dia', 'Potência (MW)': 'Potência Fornecida (MW)'},
+        color_discrete_map={
+            'Potência da Rede (MW)': 'royalblue',
+            'Potência do BESS (MW)': 'firebrick'
+        }
+    )
+    
+    fig.update_layout(
+        title_x=0.5,
+        xaxis=dict(tickmode='linear', dtick=2),
+        yaxis_title="Potência (MW)",
+        legend_title_text='Fonte de Energia'
+    )
 
     # --- PÁGINA: BMS - BALANCEAMENTO ---
     st.header("BMS: Métodos de Balanceamento de Células")
