@@ -6,7 +6,7 @@ from streamlit_option_menu import option_menu
 
 # =============================================================================
 # BIBLIOTECAS DE ASSUNTOS
-import aplicacoes
+import arquivos
 
 # =============================================================================
 
@@ -73,7 +73,7 @@ if selected == "O que é BESS?":
 
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
 if selected == "Aplicações e Gráficos":
-    aplicacoes.app()
+    arquivos.app()
     
 # --- PÁGINA: EQUAÇÕES E CÓDIGO ---
 if selected == "Equações e Código":
