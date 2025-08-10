@@ -10,12 +10,13 @@ import arquivos
 
 # =============================================================================
 
+AUTOR = "Marcus Vinícius de Medeiros"
 # =============================================================================
 # CONFIGURAÇÃO DA PÁGINA
 # st.set_page_config deve ser o primeiro comando Streamlit a ser executado
 # =============================================================================
 st.set_page_config(
-    page_title="Relatório BESS",
+    page_title="BESS",
     page_icon="🔋",
     layout="wide", # 'wide' ou 'centered'
     initial_sidebar_state="expanded" # 'auto', 'expanded', 'collapsed'
@@ -26,6 +27,9 @@ st.set_page_config(
 # Usando a biblioteca streamlit-option-menu
 # =============================================================================
 with st.sidebar:
+    st.markdown("Autor: {AUTOR}")
+    st.markdown("---")
+
     selected = option_menu(
         menu_title="Menu",  # Obrigatório
         options=["Página Inicial", "BMS", "PCS", "EMS", "Aplicações e Gráficos", "Equações e Código"],  # Obrigatório
