@@ -460,3 +460,96 @@ def introducao_armazenamento():
             - **Armazenamento Magnético Supercondutor (SMES):** Armazena energia em um campo magnético gerado por uma corrente em uma bobina supercondutora. Apresenta eficiência altíssima e resposta instantânea, mas requer resfriamento criogênico, o que consome energia e eleva o custo.
             """)
             
+
+def elementos_bess():
+    # --- PÁGINA: ELEMENTOS CONSTITUINTES DO BESS ---
+    st.header("BESS: Elementos Constituintes e Funções")
+    st.markdown("Um BESS (Battery Energy Storage System) não é apenas um conjunto de baterias, mas um sistema complexo e integrado onde cada componente desempenha um papel vital para garantir eficiência, segurança e longevidade.")
+    
+    st.markdown("### Visão Geral do Sistema")
+    st.markdown("A imagem abaixo ilustra a disposição física dos principais componentes dentro de um BESS em contêiner, uma das configurações mais comuns do mercado.")
+    st.image("img/3int1", caption="Diagramas com vista lateral e superior de um BESS em contêiner", width = 500)
+
+    # --- O SISTEMA DE BATERIAS ---
+    st.subheader("O Coração do BESS: O Sistema de Baterias")
+    st.markdown("O componente central de armazenamento de energia é organizado de forma hierárquica para atingir os níveis de tensão e capacidade desejados.")
+
+    st.info("""
+    **Hierarquia do Sistema de Baterias:**
+    1.  **Célula (Cell):** A unidade eletroquímica fundamental.
+    2.  **Módulo (Module):** Um conjunto de células conectadas em série e/ou paralelo, formando uma unidade montada.
+    3.  **Rack:** Um conjunto de módulos organizados em uma estrutura (gabinete), geralmente incluindo um sistema de gerenciamento.
+    4.  **Banco de Baterias (Battery Bank):** Um ou mais racks conectados em série e/ou paralelo para formar o sistema completo de armazenamento.
+    """)
+    st.image("img/15int1", caption="Fluxograma da hierarquia das baterias (Célula > Módulo > Rack)", width = 500)
+
+    with st.expander("O Cérebro das Baterias: BMS (Battery Management System)", expanded=True):
+        st.markdown("""
+        O BMS é um sistema eletrônico essencial que gerencia e protege as baterias. Sua função é garantir que as células operem dentro de uma janela segura de tensão, corrente e temperatura.
+        - **Principais Funções:**
+            - **Monitoramento:** Mede continuamente a tensão, corrente e temperatura de cada célula ou módulo.
+            - **Proteção:** Previne condições de sobrecarga, descarga profunda, sobrecorrente e temperaturas extremas.
+            - **Balanceamento:** Equaliza o estado de carga (SOC) entre as células para maximizar a capacidade utilizável e a vida útil do banco.
+            - **Comunicação:** Envia dados de status e alarmes para sistemas de controle superiores, como o EMS.
+        
+        A arquitetura do BMS é tipicamente multinível, com unidades de monitoramento locais (BMU ou CSC) reportando para unidades de gerenciamento de nível superior (SBMS ou SBMU), que por sua vez se comunicam com o controlador mestre (RTU ou BMU).
+        """)
+        st.image("img/10int1", caption="Arquitetura detalhada do sistema de gerenciamento de baterias (BMS)", width = 500)
+
+    with st.expander("Desafios de Operação: O 'Efeito Barril'"):
+        st.markdown("""
+        Quando múltiplas células ou racks são conectados, pequenas diferenças em suas características (como impedância interna) podem levar a um desequilíbrio.
+        - **Efeito Barril:** Assim como a capacidade de um barril é limitada pela sua aduela mais curta, o desempenho de um banco de baterias é limitado pela célula ou rack mais fraco. A célula com menor capacidade ou maior degradação ditará o ponto de corte para a carga e descarga de todo o conjunto.
+        - **Correntes de Circulação:** Em racks conectados em paralelo, diferenças de tensão podem causar correntes indesejadas que circulam entre eles, gerando perdas e aquecimento, o que pode acelerar a degradação de alguns racks em detrimento de outros.
+        - **Solução:** Um **BMS Ativo** pode mitigar esse efeito, transferindo energia das células mais carregadas para as menos carregadas, garantindo um balanceamento eficaz e maximizando a performance e vida útil do sistema.
+        """)
+        st.image("img/23int1", caption="Ilustração do 'Efeito Barril' e do balanceamento ativo do BMS", width = 500)
+    # --- PCS ---
+    # Seção sobre PCS, que você já possuía, agora enriquecida com as novas informações.
+    st.subheader("O Conversor de Potência: PCS (Power Conversion System)")
+    st.markdown("O PCS é o cérebro e a força do BESS, responsável por converter a energia entre Corrente Contínua (CC) das baterias e Corrente Alternada (CA) da rede elétrica, e por controlar ativamente o fluxo de potência. Ele é, essencialmente, um conversor estático bidirecional.")
+    
+    st.markdown("#### Topologias do PCS")
+    st.markdown("A arquitetura do PCS impacta diretamente a modularidade, eficiência e o gerenciamento das baterias.")
+    st.image("img/29int1", caption="Diagrama de classificação das topologias de PCS", width = 500)
+    
+    col1, col2 = st.columns(2, gap="large")
+    with col1:
+        st.info("Estrutura Centralizada")
+        st.markdown("""
+        - Um único PCS de alta potência é conectado a múltiplos racks de baterias em paralelo no mesmo barramento CC.
+        - **Vantagens:** Geralmente possui maior eficiência e menor custo inicial por kW.
+        - **Desvantagens:** Sofre com o "Efeito Barril" e correntes de circulação, pois não consegue gerenciar os racks individualmente. É um ponto único de falha.
+        """)
+        st.image("img/30int1", caption="Diagrama de PCS com estrutura centralizada", width = 500)
+
+    with col2:
+        st.info("Estrutura Distribuída")
+        st.markdown("""
+        - Vários PCS de menor potência são utilizados, cada um conectado a um ou a um pequeno grupo de racks de bateria.
+        - **Vantagens:** Elimina a corrente de circulação e mitiga o "Efeito Barril", pois cada PCS controla seu banco de forma independente. Oferece modularidade e maior confiabilidade (se um PCS falha, os outros continuam operando).
+        - **Desvantagens:** Eficiência global ligeiramente menor devido às perdas em múltiplos conversores e, potencialmente, um custo maior.
+        """)
+        st.image("img/33int1", caption="Diagrama de PCS com estrutura distribuída de estágio único", width = 500)
+        
+    st.markdown("Existem também topologias mais complexas, como as de **duplo estágio (CC/CC + CC/CA)** e as **multiníveis**, que permitem a conexão direta a redes de média tensão sem a necessidade de um transformador, aumentando a eficiência global do BESS.")
+
+    # --- COMPONENTES AUXILIARES ---
+    st.subheader("Componentes de Conexão, Proteção e Suporte")
+
+    with st.expander("Transformador"):
+        st.markdown("""
+        - **Função:** Adequar o nível de tensão de saída do PCS (baixa ou média tensão) ao nível de tensão da rede elétrica no ponto de conexão (média ou alta tensão).
+        - **Tipos Principais:**
+            - **A Óleo:** Utiliza óleo mineral para isolamento e refrigeração. Geralmente tem um custo de aquisição menor, mas exige mais infraestrutura de segurança (bacia de contenção) e manutenção periódica (análise do óleo).
+            - **A Seco:** Utiliza ar e resinas sólidas para isolamento. É mais seguro (sem risco de vazamento de óleo e menor risco de incêndio), exige menos manutenção e pode ser instalado mais próximo das cargas, mas possui um custo de aquisição maior.
+        """)
+        st.image("img/111int1", caption="Tabela comparativa entre transformador a óleo e a secoo", width = 500)
+
+    with st.expander("Sistemas Auxiliares"):
+        st.markdown("""
+        - **Quadros de Distribuição (QDCA / QDCC):** Painéis que abrigam disjuntores e outros dispositivos de proteção para distribuir a energia CA e CC de forma segura dentro do BESS.
+        - **HVAC (Sistema de Climatização):** Essencial para manter as baterias dentro de sua faixa ideal de temperatura de operação (geralmente entre 5°C e 45°C para Li-ion). Temperaturas extremas reduzem drasticamente o desempenho e a vida útil das baterias. **É crucial saber que baterias de Íon-Lítio não podem ser carregadas em temperaturas abaixo de 0°C**.
+        - **Sistema de Combate a Incêndio:** Sistemas de detecção (fumaça, gases) e supressão (geralmente por aerossóis ou gases inertes) projetados especificamente para os riscos associados às baterias.
+        - **Sistema de Refrigeração do PCS:** O processo de conversão de energia gera calor, e um sistema de refrigeração (a ar ou líquido, com soluções como etileno-glicol) é vital para manter o PCS operando com eficiência.
+        """)
