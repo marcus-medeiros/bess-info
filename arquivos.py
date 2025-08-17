@@ -348,7 +348,7 @@ def introducao_armazenamento():
             - **Vantagens:** Eficiência teórica muito alta (próxima de 100%), pois minimiza perdas termodinâmicas.
             - **Desvantagens:** Requer trocadores de calor muito eficientes ou técnicas avançadas (como spray de líquido), sendo uma tecnologia ainda em desenvolvimento.
             """)
-        st.markdown("`[TABELA: Tabela de vantagens e desvantagens dos sistemas CAES - Página 45]`")
+        st.image("img/45int.png", caption="Tabela de vantagens e desvantagens dos sistemas CAES", width = 500)
 
     with st.expander("Volantes de Inércia (Flywheel)"):
         st.markdown("""
@@ -371,8 +371,8 @@ def introducao_armazenamento():
             - **Gravitricity:** Propõe o uso de pesos suspensos em poços de minas desativados.
             - **ARES (Advanced Rail Energy Storage):** Utiliza vagões ferroviários pesados que são transportados para cima de uma colina para armazenar energia e descem para gerar.
         - **Características:** Longa vida útil (35 anos), eficiência > 80%.
-        `[IMAGEM: Ilustração do sistema de bateria gravitacional da Energy Vault - Página 224]`
         """)
+        st.image("img/224int.png", caption="Ilustração do sistema de bateria gravitacional da Energy Vault", width = 500)
 
     # --- ARMAZENAMENTO ELETROQUÍMICO ---
     st.subheader("2. Armazenamento Eletroquímico")
@@ -395,8 +395,8 @@ def introducao_armazenamento():
             - **Profundidade de Descarga (DoD):** Percentual da capacidade total que pode ser descarregada.
             - **Tempo de Vida (Ciclos):** Número de ciclos de carga/descarga que a bateria suporta antes de sua capacidade degradar significativamente.
         
-        `[IMAGEM: Gráfico comparativo de Energia Específica vs. Densidade de Energia para diferentes tecnologias de bateria - Página 190]`
         """)
+        st.image("img/190int.png", caption="Gráfico comparativo de Energia Específica vs. Densidade de Energia para diferentes tecnologias de bateria", width = 500)
 
         st.markdown("#### Tecnologias de Baterias")
         
@@ -414,8 +414,8 @@ def introducao_armazenamento():
             - **Princípio:** O eletrólito (que armazena a energia) fica em tanques externos e é bombeado através das células eletroquímicas para gerar energia.
             - **Vantagens:** Potência e energia são independentes e escaláveis, vida útil muito longa (>10.000 ciclos), ideal para armazenamento de longa duração e grande porte.
             - **Desvantagens:** Menor densidade de energia e complexidade do sistema (bombas, tanques).
-            `[IMAGEM: Diagrama de funcionamento de uma Bateria de Fluxo - Página 213]`
             """)
+            st.image("img/213int.png", caption="Diagrama de funcionamento de uma Bateria de Fluxo", width = 500)
 
         with col2_bat:
             st.info("Íon de Lítio (Li-ion)")
@@ -437,9 +437,8 @@ def introducao_armazenamento():
         2.  **Célula de Combustível:** Recombina o hidrogênio armazenado com o oxigênio do ar para produzir eletricidade, com água como único subproduto.
         - **Vantagens:** Elemento abundante, pode ser produzido de forma limpa, alta densidade de energia por massa.
         - **Desvantagens:** Processo de produção ainda caro, desafios no armazenamento (alta pressão ou criogenia) e falta de infraestrutura.
-        `[IMAGEM: Diagrama do ciclo completo do Hidrogênio (produção, armazenamento, uso) - Página 156]`
         """)
-
+        st.image("img/156int.png", caption="Diagrama do ciclo completo do Hidrogênio (produção, armazenamento, uso)", width = 500)
     # --- OUTRAS TECNOLOGIAS ---
     st.subheader("3. Armazenamento Termodinâmico e Eletromagnético")
     
