@@ -279,7 +279,7 @@ def introducao_armazenamento():
     # --- CLASSIFICAÇÃO DAS TECNOLOGIAS ---
     st.header("Classificação das Tecnologias de Armazenamento")
     st.markdown("As tecnologias de armazenamento de energia podem ser divididas em quatro classes principais, cada uma com diferentes subcategorias e princípios de funcionamento.")
-    st.markdown("`[IMAGEM: Diagrama das Classes de sistemas de armazenamento de energia - Página 13]`")
+    st.image("img/12int.png", caption="Diagrama das Classes de sistemas de armazenamento de energia", width = 500)
 
     # --- ARMAZENAMENTO MECÂNICO ---
     st.subheader("1. Armazenamento Mecânico")
@@ -292,10 +292,9 @@ def introducao_armazenamento():
         - **Vantagens:** Elevada capacidade de armazenamento (única tecnologia capaz de prover mais de 10 GWh em um mesmo local) e custo-benefício atrativo.
         - **Desvantagens:** Necessidade de grandes obras civis e potencial impacto ambiental.
         - **Eficiência Típica:** Em torno de 77-86%.
-        
-        `[IMAGEM: Diagrama de perdas e eficiência típica de uma UHER - Página 49]`
-        """)
 
+        """)
+        st.image("img/49int.png", caption="Diagrama de perdas e eficiência típica de uma UHER", width = 500)
         st.markdown("#### Classificação e Arranjos")
         st.markdown("""
         - **Quanto ao Circuito:**
