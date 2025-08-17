@@ -732,7 +732,7 @@ def microredes():
     st.subheader("O Papel Central do BESS na Microrrede")
     st.markdown("""
     O BESS é o componente que viabiliza a operação moderna e flexível de uma microrrede:
-    - [cite_start]**Função de Formador de Rede:** O inversor (PCS) de um BESS é a tecnologia ideal para assumir a função de *Grid-Forming*, por sua capacidade de resposta instantânea e controle preciso de tensão e frequência. [cite: 2550]
+    - **Função de Formador de Rede:** O inversor (PCS) de um BESS é a tecnologia ideal para assumir a função de *Grid-Forming*, por sua capacidade de resposta instantânea e controle preciso de tensão e frequência.
     - **Estabilidade e Qualidade de Energia:** Absorve as flutuações rápidas de fontes intermitentes como a solar e a eólica, garantindo uma energia estável e de alta qualidade para as cargas.
     - **Gerenciamento de Energia:** Permite a arbitragem de energia (armazenar quando barata/abundante, usar quando cara/escassa) e garante o fornecimento contínuo mesmo sem sol ou vento.
     """)
