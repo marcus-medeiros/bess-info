@@ -69,6 +69,7 @@ if selected == "Página Inicial":
     3.  **Conversor de Potência (PCS - Power Conversion System):** Converte a corrente contínua (CC) das baterias em corrente alternada (CA) para a rede elétrica, e vice-versa.
     """)
     st.warning("Esta seção é ideal para textos explicativos, imagens e diagramas.")
+    arquivos.introducao_armazenamento()
 
 # --- PÁGINA: O QUE É BESS? ---
 if selected == "BMS":

@@ -237,3 +237,228 @@ def pcs():
 
 def ems():
     st.markdown("""Em produção""")
+
+
+def introducao_armazenamento():
+    # --- PÁGINA: INTRODUÇÃO AO ARMAZENAMENTO DE ENERGIA ---
+    st.header("Tecnologias de Armazenamento de Energia")
+    st.markdown("Esta seção aborda os conceitos fundamentais e as diversas tecnologias utilizadas para armazenar energia, um componente crucial para a estabilidade e eficiência das redes elétricas modernas.")
+
+    # --- CONCEITOS FUNDAMENTAIS ---
+    st.subheader("Conceitos Fundamentais")
+    st.info("""
+    - [cite_start]**Conceito:** Armazenamento de energia é a captura de energia em um dado momento para uso posterior. [cite: 104, 105]
+    - [cite_start]**Objetivo Principal:** Manter o equilíbrio entre a demanda e a produção de energia. [cite: 106]
+    - [cite_start]**Acumulador:** É o dispositivo que efetivamente captura e mantém a energia. [cite: 107]
+    - [cite_start]**Fontes Primárias de Energia:** Radiação, química, potencial e cinética. [cite: 108]
+    """)
+
+    st.markdown("A necessidade de armazenamento é evidenciada pela variabilidade da geração de fontes renováveis (como solar e eólica) e pelas flutuações do consumo ao longo do dia.")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("**Evolução no Brasil**")
+        st.write("Gráficos históricos demonstram períodos de baixa nos reservatórios, ressaltando a importância de novas formas de armazenamento para a segurança energética.")
+        st.markdown("`[IMAGEM: Gráfico da Evolução da energia armazenada no Brasil - Página 9]`")
+    with col2:
+        st.markdown("**Comportamento da Geração Diária**")
+        st.write("A análise da geração diária mostra a intermitência de fontes como a solar, que produz apenas durante o dia, e a necessidade de outras fontes para suprir a demanda noturna.")
+        st.markdown("`[IMAGEM: Gráfico do Comportamento da geração diária de energia no Brasil - Página 10]`")
+
+    # --- MERCADO GLOBAL ---
+    st.subheader("Mercado Global de Armazenamento")
+    st.markdown("""
+    O mercado de armazenamento de energia está em franca expansão.
+    - [cite_start]**Crescimento:** Previsão de adicionar 175,4 GWh em 2024 e atingir 221,9 GWh em 2025, um crescimento de 26,5%. [cite: 195, 200]
+    - [cite_start]**Principais Mercados:** China, Américas e Europa concentram 90% da capacidade adicionada. [cite: 195, 196]
+    - [cite_start]**Principais Integradores de Sistemas CA:** Empresas como Tesla, Sungrow e Fluence lideram o mercado. [cite: 208, 210]
+    """)
+    st.markdown("`[TABELA: Tabela dos Principais Fabricantes de Sistemas CA (BESS integrators) - Página 12]`")
+
+
+    # --- CLASSIFICAÇÃO DAS TECNOLOGIAS ---
+    st.header("Classificação das Tecnologias de Armazenamento")
+    st.markdown("As tecnologias de armazenamento de energia podem ser divididas em quatro classes principais, cada uma com diferentes subcategorias e princípios de funcionamento.")
+    st.markdown("`[IMAGEM: Diagrama das Classes de sistemas de armazenamento de energia - Página 13]`")
+
+    # --- ARMAZENAMENTO MECÂNICO ---
+    st.subheader("1. Armazenamento Mecânico")
+    st.markdown("Esta classe armazena energia na forma de energia potencial ou cinética.")
+
+    with st.expander("Usinas Hidrelétricas Reversíveis (UHER)", expanded=True):
+        st.markdown("""
+        [cite_start]As UHERs, também conhecidas como PHS (Pumped Hydro Storage), são uma das tecnologias mais maduras para armazenamento em larga escala (>100 MW). [cite: 1094, 1095] [cite_start]Elas representam a grande maioria da capacidade de armazenamento instalada no mundo. [cite: 1246]
+        - **Princípio:** Utiliza dois reservatórios em diferentes altitudes. Em períodos de baixa demanda (e energia barata), a água é bombeada do reservatório inferior para o superior. Em períodos de alta demanda, a água é liberada para o reservatório inferior, passando por turbinas e gerando eletricidade.
+        - [cite_start]**Vantagens:** Elevada capacidade de armazenamento (única tecnologia capaz de prover mais de 10 GWh em um mesmo local) e custo-benefício atrativo. [cite: 1100, 1101, 1111, 1112]
+        - [cite_start]**Desvantagens:** Necessidade de grandes obras civis e potencial impacto ambiental. [cite: 1110]
+        - [cite_start]**Eficiência Típica:** Em torno de 77-86%. [cite: 1129, 1139]
+        
+        `[IMAGEM: Diagrama de perdas e eficiência típica de uma UHER - Página 49]`
+        """)
+
+        st.markdown("#### Classificação e Arranjos")
+        st.markdown("""
+        - **Quanto ao Circuito:**
+            - [cite_start]**Circuito Aberto:** Um ou ambos os reservatórios estão conectados a um curso de água natural. [cite: 1478]
+            - [cite_start]**Circuito Fechado (Puro):** Os reservatórios são isolados de qualquer sistema fluvial. [cite: 1478]
+        - **Quanto aos Arranjos de Máquinas:**
+            - **Conjunto Binário:** O mais comum e de menor custo. [cite_start]Usa uma única turbo-bomba reversível que gira em um sentido para gerar e no sentido oposto para bombear. [cite: 1732, 1734]
+            - **Conjunto Ternário:** Usa um motor/gerador, uma turbina e uma bomba em um único eixo. [cite_start]Permite transições mais rápidas e maior eficiência, mas tem custo mais elevado. [cite: 1641, 1697]
+            - [cite_start]**Conjunto Quaternário:** Possui unidades de geração e bombeamento totalmente separadas e independentes, oferecendo máxima eficiência e flexibilidade, mas com o maior custo. [cite: 1589, 1590]
+        """)
+        st.markdown("#### Produtos e Serviços Oferecidos")
+        st.markdown("""
+        - [cite_start]**Nivelamento de Carga (Arbitragem):** Comprar energia barata para armazenar e vender na alta. [cite: 1980]
+        - [cite_start]**Provimento de Inércia:** Ajuda a estabilizar a frequência da rede. [cite: 1981]
+        - [cite_start]**Reserva de Potência e Controle de Frequência:** Atua rapidamente para corrigir desequilíbrios entre geração e carga. [cite: 2026]
+        - [cite_start]**Autorrestabelecimento (Black-start):** Capacidade de religar uma parte da rede após um apagão. [cite: 2065, 2066]
+        - [cite_start]**Redução de Congestionamento na Rede:** Otimiza o uso das linhas de transmissão. [cite: 2067]
+        """)
+        st.markdown("`[GRÁFICOS: Gráficos da capacidade instalada de UHER no mundo - Páginas 50, 51, 52]`")
+
+
+    with st.expander("Armazenamento por Ar Comprimido (CAES)", expanded=True):
+        st.markdown("""
+        [cite_start]O CAES (Compressed Air Energy Storage) armazena energia na forma de energia potencial elástica em ar comprimido, geralmente em cavernas subterrâneas. [cite: 265]
+        - **Princípio:** Usa eletricidade para comprimir o ar e armazená-lo. [cite_start]Para gerar energia, o ar é liberado, aquecido e expandido através de uma turbina. [cite: 263, 264]
+        `[IMAGEM: Ilustração de um sistema CAES com armazenamento em caverna de sal - Página 17]`
+        """)
+
+        st.markdown("#### Tipos de CAES")
+        col1_caes, col2_caes, col3_caes = st.columns(3)
+        with col1_caes:
+            st.info("CAES Diabático (D-CAES)")
+            st.markdown("""
+            - [cite_start]O calor gerado durante a compressão é dissipado (perdido) para o ambiente. [cite: 372]
+            - [cite_start]Na geração, é necessário queimar um combustível (gás natural) para aquecer o ar antes da expansão. [cite: 373]
+            - [cite_start]**Vantagens:** Tecnologia comprovada (plantas de Huntorf e McIntosh). [cite: 424, 425]
+            - [cite_start]**Desvantagens:** Dependência de combustível fóssil, restrições geológicas e menor eficiência (42-54%). [cite: 1001, 994]
+            """)
+        with col2_caes:
+            st.info("CAES Adiabático (A-CAES)")
+            st.markdown("""
+            - [cite_start]O calor da compressão é capturado e armazenado em um reservatório térmico (TES). [cite: 554]
+            - [cite_start]Esse calor armazenado é usado para reaquecer o ar durante a expansão, sem a necessidade de combustível externo. [cite: 555]
+            - [cite_start]**Vantagens:** Ambientalmente amigável, maior eficiência potencial (até 75%). [cite: 997, 1003]
+            - [cite_start]**Desvantagens:** Desafios técnicos com altas temperaturas (até 600°C) e pressões. [cite: 635, 999]
+            """)
+        with col3_caes:
+            st.info("CAES Isotérmico (I-CAES)")
+            st.markdown("""
+            - [cite_start]Busca manter a temperatura do ar constante durante a compressão e expansão, trocando calor continuamente com o ambiente. [cite: 671, 672]
+            - [cite_start]**Vantagens:** Eficiência teórica muito alta (próxima de 100%), pois minimiza perdas termodinâmicas. [cite: 1020]
+            - [cite_start]**Desvantagens:** Requer trocadores de calor muito eficientes ou técnicas avançadas (como spray de líquido), sendo uma tecnologia ainda em desenvolvimento. [cite: 1017, 1019]
+            """)
+        st.markdown("`[TABELA: Tabela de vantagens e desvantagens dos sistemas CAES - Página 45]`")
+
+    with st.expander("Volantes de Inércia (Flywheel)"):
+        st.markdown("""
+        [cite_start]Armazenam energia na forma de energia cinética rotacional. [cite: 2081]
+        - **Princípio:** Um motor elétrico acelera um rotor massivo (volante) a altas velocidades, armazenando energia. [cite_start]Para descarregar, o rotor aciona o mesmo motor, que agora atua como gerador. [cite: 2082]
+        - [cite_start]**Componentes:** Rotor, Motor/Gerador, Mancais (mecânicos ou magnéticos), Eletrônica de Potência e Carcaça (geralmente a vácuo para reduzir o atrito). [cite: 2087, 2088, 2089, 2090, 2091]
+        - **Características:**
+            - [cite_start]**Alta Eficiência:** 80-90%. [cite: 2100]
+            - [cite_start]**Longa Vida Útil:** Mais de 100.000 ciclos de carga/descarga. [cite: 2105]
+            - [cite_start]**Resposta Rápida:** Capaz de carregar e descarregar em segundos. [cite: 2108]
+            - **Limitação:** Armazenam energia por períodos curtos (minutos).
+        """)
+
+    with st.expander("Bateria Gravitacional"):
+        st.markdown("""
+        [cite_start]Funciona com base no armazenamento de energia potencial gravitacional, similar a uma UHER, mas usando massas sólidas. [cite: 2378]
+        - **Princípio:** Utiliza eletricidade para erguer blocos pesados. [cite_start]A energia é recuperada ao baixar os blocos de forma controlada, usando a força da gravidade para acionar geradores. [cite: 2378]
+        - **Fornecedores e Métodos:**
+            - [cite_start]**Energy Vault:** Usa guindastes para empilhar e desempilhar blocos de 35 toneladas em uma estrutura similar a um prédio. [cite: 2222, 2383]
+            - [cite_start]**Gravitricity:** Propõe o uso de pesos suspensos em poços de minas desativados. [cite: 2221]
+            - [cite_start]**ARES (Advanced Rail Energy Storage):** Utiliza vagões ferroviários pesados que são transportados para cima de uma colina para armazenar energia e descem para gerar. [cite: 2221]
+        - [cite_start]**Características:** Longa vida útil (35 anos), eficiência > 80%. [cite: 2222]
+        `[IMAGEM: Ilustração do sistema de bateria gravitacional da Energy Vault - Página 224]`
+        """)
+
+    # --- ARMAZENAMENTO ELETROQUÍMICO ---
+    st.subheader("2. Armazenamento Eletroquímico")
+    st.markdown("Esta classe armazena energia através de reações químicas.")
+
+    with st.expander("Baterias", expanded=True):
+        st.markdown("""
+        [cite_start]Convertem energia química contida em seus materiais ativos diretamente em energia elétrica através de uma reação eletroquímica. [cite: 2273]
+        - **Componentes básicos da Célula:**
+            - [cite_start]**Ânodo (-):** Eletrodo que se oxida (perde elétrons) durante a descarga. [cite: 2281]
+            - [cite_start]**Cátodo (+):** Eletrodo que se reduz (ganha elétrons) durante a descarga. [cite: 2282]
+            - [cite_start]**Eletrólito:** Meio que permite o fluxo de íons (mas não de elétrons) entre o ânodo e o cátodo. [cite: 2282]
+            - [cite_start]**Separador:** Material poroso que isola eletricamente o ânodo do cátodo para evitar curto-circuito, mas permite a passagem dos íons. [cite: 2296]
+        - **Classificação:**
+            - [cite_start]**Primárias:** Não recarregáveis. [cite: 2298]
+            - [cite_start]**Secundárias:** Recarregáveis (a reação química é reversível). [cite: 2298]
+        - **Parâmetros Chave:**
+            - **Energia Específica (Wh/kg):** Capacidade de armazenamento por massa. [cite_start]Importante para aplicações móveis. [cite: 2301, 2308]
+            - **Densidade de Energia (Wh/L):** Capacidade de armazenamento por volume. [cite_start]Importante para aplicações com espaço limitado. [cite: 2301, 2308]
+            - [cite_start]**Profundidade de Descarga (DoD):** Percentual da capacidade total que pode ser descarregada. [cite: 2301]
+            - [cite_start]**Tempo de Vida (Ciclos):** Número de ciclos de carga/descarga que a bateria suporta antes de sua capacidade degradar significativamente. [cite: 2301]
+        
+        `[IMAGEM: Gráfico comparativo de Energia Específica vs. Densidade de Energia para diferentes tecnologias de bateria - Página 190]`
+        """)
+
+        st.markdown("#### Tecnologias de Baterias")
+        
+        col1_bat, col2_bat = st.columns(2)
+        with col1_bat:
+            st.info("Chumbo-Ácido")
+            st.markdown("""
+            - [cite_start]**Vantagens:** Tecnologia madura, robusta e de baixo custo. [cite: 2311]
+            - [cite_start]**Desvantagens:** Baixa densidade de energia, vida útil curta, sensível a descargas profundas (DoD típico de 20%, máximo de 80%). [cite: 2311]
+            - [cite_start]**Avanço:** Baterias de **Chumbo-Carbono** adicionam materiais de carbono aos eletrodos para melhorar as correntes, a densidade e a vida útil. [cite: 2324]
+            """)
+
+            st.info("Baterias de Fluxo (REDOX)")
+            st.markdown("""
+            - [cite_start]**Princípio:** O eletrólito (que armazena a energia) fica em tanques externos e é bombeado através das células eletroquímicas para gerar energia. [cite: 2360]
+            - [cite_start]**Vantagens:** Potência e energia são independentes e escaláveis, vida útil muito longa (>10.000 ciclos), ideal para armazenamento de longa duração e grande porte. [cite: 2361, 2362]
+            - **Desvantagens:** Menor densidade de energia e complexidade do sistema (bombas, tanques).
+            `[IMAGEM: Diagrama de funcionamento de uma Bateria de Fluxo - Página 213]`
+            """)
+
+        with col2_bat:
+            st.info("Íon de Lítio (Li-ion)")
+            st.markdown("""
+            Tecnologia dominante em BESS e veículos elétricos.
+            - [cite_start]**Vantagens:** Alta densidade de energia, maior vida útil em ciclos, baixo coeficiente de autodescarga e excelente custo-benefício. [cite: 2330, 2338]
+            - [cite_start]**Desvantagens:** Requer um sistema de gerenciamento (BMS) para garantir a segurança, pois o eletrólito pode ser inflamável. [cite: 2330]
+            - **Químicas Comuns:**
+                - **NMC (Níquel Manganês Cobalto):** Bom equilíbrio entre energia, potência e custo. [cite_start]Muito usada em veículos elétricos e BESS. [cite: 2345, 2347]
+                - **LFP (Fosfato de Ferro Lítio):** Excelente segurança (estabilidade térmica), vida útil muito longa e menor custo. [cite_start]Tornou-se o padrão para armazenamento estacionário. [cite: 2349]
+                - [cite_start]**LTO (Titanato de Lítio):** Vida útil excepcional (>10.000 ciclos) e segurança, mas com menor densidade de energia. [cite: 2351]
+            - [cite_start]**Futuro:** **Baterias de Estado Sólido**, que substituem o eletrólito líquido por um sólido, prometem maior segurança, durabilidade e densidade de energia. [cite: 2354, 2355]
+            """)
+
+    with st.expander("Hidrogênio (H₂) e Células de Combustível"):
+        st.markdown("""
+        Sistema de armazenamento de longo prazo que envolve dois processos:
+        1.  [cite_start]**Eletrólise:** Usa eletricidade (preferencialmente de fontes renováveis, gerando **Hidrogênio Verde**) para separar a água (H₂O) em hidrogênio (H₂) e oxigênio (O₂). [cite: 2202]
+        2.  [cite_start]**Célula de Combustível:** Recombina o hidrogênio armazenado com o oxigênio do ar para produzir eletricidade, com água como único subproduto. [cite: 2232]
+        - [cite_start]**Vantagens:** Elemento abundante, pode ser produzido de forma limpa, alta densidade de energia por massa. [cite: 2224, 2225, 2227]
+        - [cite_start]**Desvantagens:** Processo de produção ainda caro, desafios no armazenamento (alta pressão ou criogenia) e falta de infraestrutura. [cite: 2229]
+        `[IMAGEM: Diagrama do ciclo completo do Hidrogênio (produção, armazenamento, uso) - Página 156]`
+        """)
+
+    # --- OUTRAS TECNOLOGIAS ---
+    st.subheader("3. Armazenamento Termodinâmico e Eletromagnético")
+    
+    col1_outras, col2_outras = st.columns(2)
+    with col1_outras:
+        with st.container(border=True):
+            st.markdown("#### Armazenamento Térmico (TES)")
+            st.markdown("""
+            [cite_start]Armazena energia na forma de calor em um meio líquido ou sólido. [cite: 2165]
+            - [cite_start]**Calor Sensível:** A temperatura do meio (ex: sais fundidos em usinas solares CSP, rochas, água) é alterada para armazenar/liberar energia. [cite: 2166, 2184]
+            - [cite_start]**Calor Latente:** Usa a energia absorvida/liberada durante a mudança de fase de um material (PCM - Phase Change Material), como de sólido para líquido. [cite: 2166]
+            - [cite_start]**Termoquímico:** Utiliza reações químicas reversíveis para armazenar energia. [cite: 2166]
+            """)
+    with col2_outras:
+        with st.container(border=True):
+            st.markdown("#### Armazenamento Eletromagnético")
+            st.markdown("""
+            - [cite_start]**Supercapacitores (Ultracapacitores):** Armazenam energia em um campo elétrico. Possuem capacidade de armazenamento limitada, mas podem carregar/descarregar quase instantaneamente com altíssima potência e suportam milhões de ciclos. Ideais para aplicações de resposta rápida. [cite: 2240]
+            - **Armazenamento Magnético Supercondutor (SMES):** Armazena energia em um campo magnético gerado por uma corrente em uma bobina supercondutora. [cite_start]Apresenta eficiência altíssima e resposta instantânea, mas requer resfriamento criogênico, o que consome energia e eleva o custo. [cite: 2259, 2260, 2264]
+            """)
+            
