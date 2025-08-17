@@ -776,3 +776,112 @@ def microredes():
     """)
     st.image("img/165int2.png", caption="Diagrama unifilar da Microrrede de exemplo", width = 500)
 
+def aplicacoes_bess():
+    # --- PÁGINA: APLICAÇÕES DO BESS ---
+    st.header("Aplicações e Serviços do BESS")
+    st.markdown("""
+    A grande versatilidade é uma das principais vantagens dos sistemas de armazenamento com baterias (BESS). Eles podem ser instalados em praticamente qualquer ponto da rede elétrica, oferecendo uma vasta gama de serviços para diferentes stakeholders. As aplicações podem ser divididas em quatro segmentos principais: **Atrás do Medidor (Consumidor)**, **Geração**, **Transmissão** e **Distribuição**.
+    """)
+
+    st.info("""
+    **Conceito-chave: Combinação de Aplicações (Value Stacking)**
+    A viabilidade econômica de um projeto BESS raramente depende de uma única aplicação. O mais comum e vantajoso é "empilhar" múltiplos serviços, permitindo que o mesmo ativo gere diferentes fluxos de receita e maximize sua utilização e retorno financeiro.
+    """)
+    st.markdown("`[IMAGEM: Gráfico de Combinação de Aplicações (Value Stacking) - Página 7]`")
+
+    st.subheader("Mapa de Aplicações do BESS")
+    st.markdown("Este diagrama ilustra como os diferentes serviços se distribuem entre os stakeholders (Operador, Consumidor, Redes de T&D) e o tipo de instalação (Centralizada ou Distribuída).")
+    st.markdown("`[IMAGEM: Diagrama circular das Aplicações do BESS por stakeholder - Página 9]`")
+
+    # --- ABAS PARA CADA SETOR ---
+    tab_operador, tab_redes, tab_consumidor, tab_geracao = st.tabs([
+        "Serviços para o Operador da Rede", 
+        "Aplicações em Transmissão e Distribuição", 
+        "Aplicações para o Consumidor (BTM)", 
+        "Aplicações para Geração Renovável"
+    ])
+
+    with tab_operador:
+        st.markdown("### Serviços para o Operador da Rede (Front-of-the-Meter)")
+        st.markdown("Também conhecidos como **Serviços Ancilares**, são focados em garantir a estabilidade, confiabilidade e segurança de todo o sistema elétrico.")
+
+        with st.container(border=True):
+            st.markdown("#### Regulação de Frequência")
+            st.markdown("""
+            A frequência da rede precisa ser mantida constante (60 Hz no Brasil). O BESS, com seu tempo de resposta de milissegundos, é ideal para injetar ou absorver potência ativ_a e corrigir pequenos desvios de frequência.
+            - **Regulação Primária:** Resposta autônoma e instantânea para deter a queda ou subida da frequência.
+            - **Regulação Secundária:** Ação mais lenta e controlada para trazer a frequência de volta ao valor nominal.
+            `[IMAGEM: Gráfico ilustrativo da Regulação de Frequência - Página 63]`
+            """)
+
+        with st.container(border=True):
+            st.markdown("#### Reserva de Potência (Reserva Girante)")
+            st.markdown("É a capacidade de geração que fica disponível para entrar em operação rapidamente em caso de falha de um grande gerador ou linha. O BESS pode fornecer essa reserva de forma instantânea, permitindo que geradores térmicos, que são mais lentos, não precisem operar ociosos, economizando combustível e reduzindo emissões.")
+            st.markdown("`[IMAGEM: Gráfico ilustrativo da Reserva Girante - Página 75]`")
+
+        with st.container(border=True):
+            st.markdown("#### Controle de Tensão e Suporte de Reativos")
+            st.markdown("O PCS do BESS pode injetar ou absorver potência reativa para manter os níveis de tensão da rede dentro dos limites adequados. Esta função pode ser executada sem consumir a energia armazenada nas baterias (ciclos).")
+
+        with st.container(border=True):
+            st.markdown("#### Black Start (Partida a Frio)")
+            st.markdown("É a capacidade de reenergizar uma parte da rede elétrica após um blecaute total, sem necessitar de uma fonte de energia externa. O BESS, por ser uma fonte independente, pode iniciar esse processo, energizando linhas e auxiliando na partida de usinas maiores.")
+
+    with tab_redes:
+        st.markdown("### Aplicações em Transmissão e Distribuição (T&D)")
+        st.markdown("Neste segmento, o BESS é utilizado como um ativo para otimizar a infraestrutura da rede, muitas vezes evitando ou adiando grandes investimentos.")
+
+        with st.container(border=True):
+            st.markdown("#### Postergação de Investimentos em Redes")
+            st.markdown("Em áreas com crescimento de carga ou picos de consumo sazonais, um BESS pode ser instalado para atender a essa demanda extra. Isso adia a necessidade de construir novas linhas de transmissão/distribuição ou de substituir transformadores, que são investimentos caros e demorados.")
+
+        with st.container(border=True):
+            st.markdown("#### Alívio de Congestionamento (Transmissão Virtual)")
+            st.markdown("Quando uma linha de transmissão atinge sua capacidade máxima (congestionamento), a geração de usinas baratas precisa ser cortada. Um BESS pode ser instalado antes do ponto de congestionamento para armazenar essa energia e outro BESS pode ser instalado depois para injetá-la, na prática criando uma \"Linha de Transmissão Virtual\" e otimizando o uso dos ativos de geração.")
+            st.markdown("`[IMAGEM: Diagrama do conceito de Transmissão Virtual - Páginas 45-46]`")
+
+    with tab_consumidor:
+        st.markdown("### Aplicações para o Consumidor (Atrás do Medidor - BTM)")
+        st.markdown("Aqui, o BESS é instalado na própria unidade consumidora (indústria, comércio ou residência) para gerar economia direta na conta de energia.")
+        
+        with st.container(border=True):
+            st.markdown("#### Arbitragem de Energia (Energy Time-Shift)")
+            st.markdown("A aplicação mais comum. Consiste em carregar as baterias quando a energia é mais barata (horário fora de ponta ou com excesso de geração solar) e descarregar para consumir essa energia quando ela é mais cara (horário de ponta).")
+        
+        with st.container(border=True):
+            st.markdown("#### Peak Shaving (Redução da Demanda de Ponta)")
+            st.markdown("Grandes consumidores pagam não só pela energia (kWh), mas também pela demanda de potência (kW). O BESS é usado para fornecer energia durante os picos de consumo, \"aparando\" o pico de demanda da rede e reduzindo significativamente essa parcela da fatura.")
+            st.markdown("`[IMAGEM: Gráfico ilustrativo do Peak Shaving - Página 60]`")
+        
+        with st.container(border=True):
+            st.markdown("#### Aumento do Autoconsumo Fotovoltaico")
+            st.markdown("Armazena a energia solar gerada durante o dia que não foi consumida na hora, para que possa ser utilizada à noite. Isso maximiza o aproveitamento da energia gerada e reduz a dependência da rede.")
+
+        with st.container(border=True):
+            st.markdown("#### Backup Power (Energia de Emergência / Nobreak)")
+            st.markdown("Fornece energia para cargas críticas durante quedas da rede, funcionando como um nobreak (UPS) de grande capacidade e longa duração.")
+
+    with tab_geracao:
+        st.markdown("### Aplicações para Geração Renovável")
+        st.markdown("O BESS é um facilitador chave para a integração em larga escala de fontes intermitentes como a solar e a eólica.")
+
+        with st.container(border=True):
+            st.markdown("#### Capacity Firming e Controle de Rampa")
+            st.markdown("O BESS suaviza a saída de potência de usinas eólicas e solares, que é naturalmente variável. Ele absorve picos e preenche vales de geração, entregando à rede uma energia mais constante e previsível (firme), além de controlar a taxa de variação (rampa), atendendo aos requisitos do operador da rede.")
+            st.markdown("`[IMAGEM: Gráfico ilustrativo de Capacity Firming - Página 66]`")
+
+        with st.container(border=True):
+            st.markdown("#### Qualidade de Energia (Power Quality)")
+            st.markdown("Devido à sua resposta ultrarrápida, o PCS do BESS pode corrigir distúrbios de curta duração na rede, como afundamentos de tensão (sags), elevações (swells) e distorções harmônicas, protegendo equipamentos sensíveis.")
+            st.markdown("`[IMAGEM: Gráfico ilustrativo de Power Quality - Página 71]`")
+
+    # --- CENÁRIO BRASILEIRO ---
+    st.subheader("Cenário Brasileiro e Viabilidade Econômica")
+    st.markdown("""
+    O mercado de BESS no Brasil está em desenvolvimento, impulsionado por ações regulatórias como a instituição do PLD Horário (que cria oportunidades de arbitragem) e discussões sobre a remuneração de serviços ancilares.
+    
+    - **Atratividade:** A viabilidade econômica de um projeto é fortemente influenciada pela estrutura tarifária da concessionária local. Distribuidoras com uma grande diferença entre a tarifa no horário de ponta e fora de ponta, como a Equatorial PA citada no estudo de caso, apresentam alta atratividade para a aplicação de arbitragem de energia.
+    - **Crescimento:** O principal fator que impulsiona o mercado é a contínua redução de custos das baterias de lítio, que, segundo projeções, tornará o armazenamento financeiramente viável para milhares de consumidores comerciais e industriais nos próximos anos.
+    """)
+    st.markdown("O documento na **página 81** apresenta uma tabela com diversos projetos de BESS em operação, implantação ou estudo no Brasil, demonstrando o crescimento do interesse por essa tecnologia no país.")
+

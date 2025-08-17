@@ -88,6 +88,7 @@ if selected == "Micro-redes":
 
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
 if selected == "Aplicações e Gráficos":
+    arquivos.aplicacoes_bess()
     arquivos.peak_shaving_app()
     
 # --- PÁGINA: EQUAÇÕES E CÓDIGO ---
