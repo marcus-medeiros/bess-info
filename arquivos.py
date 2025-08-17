@@ -521,7 +521,6 @@ def elementos_bess():
         - **Vantagens:** Geralmente possui maior eficiência e menor custo inicial por kW.
         - **Desvantagens:** Sofre com o "Efeito Barril" e correntes de circulação, pois não consegue gerenciar os racks individualmente. É um ponto único de falha.
         """)
-        st.image("img/30int1.png", caption="Diagrama de PCS com estrutura centralizada", width = 500)
 
     with col2:
         st.info("Estrutura Distribuída")
@@ -530,7 +529,6 @@ def elementos_bess():
         - **Vantagens:** Elimina a corrente de circulação e mitiga o "Efeito Barril", pois cada PCS controla seu banco de forma independente. Oferece modularidade e maior confiabilidade (se um PCS falha, os outros continuam operando).
         - **Desvantagens:** Eficiência global ligeiramente menor devido às perdas em múltiplos conversores e, potencialmente, um custo maior.
         """)
-        st.image("img/33int1.png", caption="Diagrama de PCS com estrutura distribuída de estágio único", width = 500)
         
     st.markdown("Existem também topologias mais complexas, como as de **duplo estágio (CC/CC + CC/CA)** e as **multiníveis**, que permitem a conexão direta a redes de média tensão sem a necessidade de um transformador, aumentando a eficiência global do BESS.")
 

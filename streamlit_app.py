@@ -79,7 +79,7 @@ if selected == "BMS":
 
 if selected == "PCS":
     arquivos.pcs()
-
+    arquivos.pcs_detalhado()
 if selected == "EMS":
     arquivos.ems()
 
