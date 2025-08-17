@@ -273,7 +273,6 @@ def introducao_armazenamento():
     - **Principais Mercados:** China, Américas e Europa concentram 90% da capacidade adicionada.
     - **Principais Integradores de Sistemas CA:** Empresas como Tesla, Sungrow e Fluence lideram o mercado.
     """)
-    st.markdown("`[TABELA: Tabela dos Principais Fabricantes de Sistemas CA (BESS integrators) - Página 12]`")
     st.image("img/12int.png", caption="Tabela dos Principais Fabricantes de Sistemas CA (BESS integrators)", width = 500)
 
 
@@ -315,8 +314,7 @@ def introducao_armazenamento():
         - **Autorrestabelecimento (Black-start):** Capacidade de religar uma parte da rede após um apagão.
         - **Redução de Congestionamento na Rede:** Otimiza o uso das linhas de transmissão.
         """)
-        st.markdown("`[GRÁFICOS: Gráficos da capacidade instalada de UHER no mundo - Páginas 50, 51, 52]`")
-
+        st.image("img/51int.png", caption="Gráficos da capacidade instalada de UHER no mundo", width = 500)
 
     with st.expander("Armazenamento por Ar Comprimido (CAES)", expanded=True):
         st.markdown("""
