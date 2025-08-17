@@ -468,7 +468,7 @@ def elementos_bess():
     
     st.markdown("### Visão Geral do Sistema")
     st.markdown("A imagem abaixo ilustra a disposição física dos principais componentes dentro de um BESS em contêiner, uma das configurações mais comuns do mercado.")
-    st.image("img/3int1", caption="Diagramas com vista lateral e superior de um BESS em contêiner", width = 500)
+    st.image("img/3int1.png", caption="Diagramas com vista lateral e superior de um BESS em contêiner", width = 500)
 
     # --- O SISTEMA DE BATERIAS ---
     st.subheader("O Coração do BESS: O Sistema de Baterias")
@@ -481,7 +481,7 @@ def elementos_bess():
     3.  **Rack:** Um conjunto de módulos organizados em uma estrutura (gabinete), geralmente incluindo um sistema de gerenciamento.
     4.  **Banco de Baterias (Battery Bank):** Um ou mais racks conectados em série e/ou paralelo para formar o sistema completo de armazenamento.
     """)
-    st.image("img/15int1", caption="Fluxograma da hierarquia das baterias (Célula > Módulo > Rack)", width = 500)
+    st.image("img/15int1.png", caption="Fluxograma da hierarquia das baterias (Célula > Módulo > Rack)", width = 500)
 
     with st.expander("O Cérebro das Baterias: BMS (Battery Management System)", expanded=True):
         st.markdown("""
@@ -494,7 +494,7 @@ def elementos_bess():
         
         A arquitetura do BMS é tipicamente multinível, com unidades de monitoramento locais (BMU ou CSC) reportando para unidades de gerenciamento de nível superior (SBMS ou SBMU), que por sua vez se comunicam com o controlador mestre (RTU ou BMU).
         """)
-        st.image("img/10int1", caption="Arquitetura detalhada do sistema de gerenciamento de baterias (BMS)", width = 500)
+        st.image("img/10int1.png", caption="Arquitetura detalhada do sistema de gerenciamento de baterias (BMS)", width = 500)
 
     with st.expander("Desafios de Operação: O 'Efeito Barril'"):
         st.markdown("""
@@ -503,7 +503,7 @@ def elementos_bess():
         - **Correntes de Circulação:** Em racks conectados em paralelo, diferenças de tensão podem causar correntes indesejadas que circulam entre eles, gerando perdas e aquecimento, o que pode acelerar a degradação de alguns racks em detrimento de outros.
         - **Solução:** Um **BMS Ativo** pode mitigar esse efeito, transferindo energia das células mais carregadas para as menos carregadas, garantindo um balanceamento eficaz e maximizando a performance e vida útil do sistema.
         """)
-        st.image("img/23int1", caption="Ilustração do 'Efeito Barril' e do balanceamento ativo do BMS", width = 500)
+        st.image("img/23int1.png", caption="Ilustração do 'Efeito Barril' e do balanceamento ativo do BMS", width = 500)
     # --- PCS ---
     # Seção sobre PCS, que você já possuía, agora enriquecida com as novas informações.
     st.subheader("O Conversor de Potência: PCS (Power Conversion System)")
@@ -511,7 +511,7 @@ def elementos_bess():
     
     st.markdown("#### Topologias do PCS")
     st.markdown("A arquitetura do PCS impacta diretamente a modularidade, eficiência e o gerenciamento das baterias.")
-    st.image("img/29int1", caption="Diagrama de classificação das topologias de PCS", width = 500)
+    st.image("img/29int1.png", caption="Diagrama de classificação das topologias de PCS", width = 500)
     
     col1, col2 = st.columns(2, gap="large")
     with col1:
@@ -521,7 +521,7 @@ def elementos_bess():
         - **Vantagens:** Geralmente possui maior eficiência e menor custo inicial por kW.
         - **Desvantagens:** Sofre com o "Efeito Barril" e correntes de circulação, pois não consegue gerenciar os racks individualmente. É um ponto único de falha.
         """)
-        st.image("img/30int1", caption="Diagrama de PCS com estrutura centralizada", width = 500)
+        st.image("img/30int1.png", caption="Diagrama de PCS com estrutura centralizada", width = 500)
 
     with col2:
         st.info("Estrutura Distribuída")
@@ -530,7 +530,7 @@ def elementos_bess():
         - **Vantagens:** Elimina a corrente de circulação e mitiga o "Efeito Barril", pois cada PCS controla seu banco de forma independente. Oferece modularidade e maior confiabilidade (se um PCS falha, os outros continuam operando).
         - **Desvantagens:** Eficiência global ligeiramente menor devido às perdas em múltiplos conversores e, potencialmente, um custo maior.
         """)
-        st.image("img/33int1", caption="Diagrama de PCS com estrutura distribuída de estágio único", width = 500)
+        st.image("img/33int1.png", caption="Diagrama de PCS com estrutura distribuída de estágio único", width = 500)
         
     st.markdown("Existem também topologias mais complexas, como as de **duplo estágio (CC/CC + CC/CA)** e as **multiníveis**, que permitem a conexão direta a redes de média tensão sem a necessidade de um transformador, aumentando a eficiência global do BESS.")
 
@@ -544,7 +544,7 @@ def elementos_bess():
             - **A Óleo:** Utiliza óleo mineral para isolamento e refrigeração. Geralmente tem um custo de aquisição menor, mas exige mais infraestrutura de segurança (bacia de contenção) e manutenção periódica (análise do óleo).
             - **A Seco:** Utiliza ar e resinas sólidas para isolamento. É mais seguro (sem risco de vazamento de óleo e menor risco de incêndio), exige menos manutenção e pode ser instalado mais próximo das cargas, mas possui um custo de aquisição maior.
         """)
-        st.image("img/111int1", caption="Tabela comparativa entre transformador a óleo e a secoo", width = 500)
+        st.image("img/111int1.png", caption="Tabela comparativa entre transformador a óleo e a secoo", width = 500)
 
     with st.expander("Sistemas Auxiliares"):
         st.markdown("""
