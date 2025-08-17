@@ -274,12 +274,14 @@ def introducao_armazenamento():
     - **Principais Integradores de Sistemas CA:** Empresas como Tesla, Sungrow e Fluence lideram o mercado.
     """)
     st.markdown("`[TABELA: Tabela dos Principais Fabricantes de Sistemas CA (BESS integrators) - Página 12]`")
+    st.image("img/12int.png", caption="Tabela dos Principais Fabricantes de Sistemas CA (BESS integrators)", width = 500)
 
 
     # --- CLASSIFICAÇÃO DAS TECNOLOGIAS ---
     st.header("Classificação das Tecnologias de Armazenamento")
     st.markdown("As tecnologias de armazenamento de energia podem ser divididas em quatro classes principais, cada uma com diferentes subcategorias e princípios de funcionamento.")
-    st.image("img/12int.png", caption="Diagrama das Classes de sistemas de armazenamento de energia", width = 500)
+    st.image("img/13int.png", caption="Diagrama das Classes de sistemas de armazenamento de energia", width = 500)
+    
 
     # --- ARMAZENAMENTO MECÂNICO ---
     st.subheader("1. Armazenamento Mecânico")
@@ -320,8 +322,8 @@ def introducao_armazenamento():
         st.markdown("""
         O CAES (Compressed Air Energy Storage) armazena energia na forma de energia potencial elástica em ar comprimido, geralmente em cavernas subterrâneas.
         - **Princípio:** Usa eletricidade para comprimir o ar e armazená-lo. Para gerar energia, o ar é liberado, aquecido e expandido através de uma turbina.
-        `[IMAGEM: Ilustração de um sistema CAES com armazenamento em caverna de sal - Página 17]`
         """)
+        st.image("img/17int.png", caption="Ilustração de um sistema CAES com armazenamento em caverna de sal", width = 500)
 
         st.markdown("#### Tipos de CAES")
         col1_caes, col2_caes, col3_caes = st.columns(3)
