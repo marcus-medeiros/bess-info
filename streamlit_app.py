@@ -84,7 +84,7 @@ if selected == "EMS":
     arquivos.ems()
 
 if selected == "Micro-redes":
-    st.warning("Esta seção é ideal para textos explicativos, imagens e diagramas.")
+    arquivos.microredes()
 
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
 if selected == "Aplicações e Gráficos":
