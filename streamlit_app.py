@@ -29,8 +29,8 @@ st.set_page_config(
 with st.sidebar:
     selected = option_menu(
         menu_title="Menu",  # Obrigatório
-        options=["Página Inicial", "BMS", "PCS", "EMS", "Aplicações e Gráficos", "Equações e Código"],  # Obrigatório
-        icons=["house", "folder", "folder", "folder", "question-circle", "bar-chart-line", "code-slash"],  # Opcional (ícones do Bootstrap)
+        options=["Página Inicial", "BMS", "PCS", "EMS", "Micro-redes" "Aplicações e Gráficos", "Equações e Código"],  # Obrigatório
+        icons=["house", "folder", "folder", "folder", "folder", "question-circle", "bar-chart-line", "code-slash"],  # Opcional (ícones do Bootstrap)
         menu_icon="cloud",  # Opcional
         default_index=0,  # Opcional
         orientation="vertical", # "horizontal" ou "vertical"
@@ -82,6 +82,9 @@ if selected == "PCS":
     arquivos.pcs_detalhado()
 if selected == "EMS":
     arquivos.ems()
+
+if selected == "Micro-redes":
+    st.warning("Esta seção é ideal para textos explicativos, imagens e diagramas.")
 
 # --- PÁGINA: APLICAÇÕES E GRÁFICOS ---
 if selected == "Aplicações e Gráficos":

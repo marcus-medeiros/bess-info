@@ -659,3 +659,82 @@ def pcs_detalhado():
     - **Perdas no Transformador:** Se presente, o transformador pode ser responsável por perdas de até 4% da energia processada. A eliminação deste componente com conversores multiníveis é uma grande vantagem.
     - **Perdas em Sistemas Auxiliares:** Energia consumida pelos próprios sistemas de controle, refrigeração do PCS, ventilação, etc.
     """)
+
+def microredes():
+    # --- PÁGINA: MICRORREDES ---
+    st.header("Microrredes: O Futuro da Resiliência Energética")
+    st.markdown("""
+    Uma microrrede é um sistema de energia local e autônomo. A definição formal, segundo o Departamento de Energia dos EUA, é:
+    > "Um grupo de cargas interconectadas e recursos energéticos distribuídos dentro de limites elétricos claramente definidos que atuam como uma única entidade controlável em relação à rede. A microrrede pode se conectar e desconectar da rede para permitir que ela opere tanto no modo conectado quanto no modo ilhado."
+    
+    Em essência, uma microrrede pode funcionar como uma pequena ilha de energia, garantindo o fornecimento para cargas críticas mesmo quando a rede principal sofre uma interrupção.
+    """)
+    st.image("img/128int2.png", caption="Diagrama com os tipos de microrredes (Campus, Comunidade, Militar, etc.)", width = 500)
+
+    # --- ESTRUTURA E COMPONENTES ---
+    st.subheader("Estrutura e Componentes Essenciais")
+    st.markdown("""
+    Uma microrrede é composta por quatro elementos principais que são gerenciados por um controlador central (geralmente um EMS):
+    - **Fontes de Geração Distribuída (DERs):** Fontes de energia locais como painéis solares, geradores a diesel/gás ou turbinas eólicas.
+    - **Sistemas de Armazenamento de Energia (BESS):** Componente vital, geralmente baterias, que absorvem o excesso de geração e fornecem energia quando as fontes não estão disponíveis, além de garantir a estabilidade do sistema.
+    - **Cargas (Loads):** Os consumidores de energia dentro da microrrede. Elas podem ser classificadas como críticas (hospitais, data centers) e não críticas.
+    - **Ponto de Conexão Comum (PCC):** Um disjuntor ou chave que conecta ou desconecta fisicamente a microrrede da rede elétrica principal da concessionária.
+    """)
+
+    # --- MODOS DE OPERAÇÃO E TRANSIÇÕES (NORMA IEEE 2030.7) ---
+    st.subheader("Modos de Operação e Transições (Norma IEEE 2030.7)")
+    st.markdown("A principal característica de uma microrrede é sua capacidade de alternar entre diferentes estados operacionais de forma segura e confiável.")
+    st.image("img/130int2.png", caption="Diagrama dos estados de operação e modos de transição de uma microrrede", width = 500)
+
+    tab1, tab2 = st.tabs(["Modos de Operação", "Transições Críticas"])
+
+    with tab1:
+        st.markdown("### Modos de Operação Estacionários")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.info("SS1 - Modo Conectado (On-Grid)")
+            st.markdown("""
+            A microrrede está conectada e opera em paralelo com a rede principal.
+            - O BESS e outras fontes operam em modo **Seguidor de Rede (Grid-Following)**, sincronizados com a frequência e tensão da concessionária.
+            - A microrrede pode exportar o excesso de energia ou importar quando necessário.
+            - Pode fornecer serviços à rede, como regulação de frequência e *peak shaving*.
+            """)
+        with col2:
+            st.info("SS2 - Modo Ilhado (Islanded)")
+            st.markdown("""
+            A microrrede está desconectada da rede principal e opera de forma autônoma.
+            - Pelo menos uma fonte, tipicamente o BESS, deve operar em modo **Formador de Rede (Grid-Forming)**, estabelecendo a referência de tensão e frequência para toda a microrrede. 
+            - O equilíbrio entre geração, armazenamento e consumo deve ser gerenciado ativamente pelo controlador da microrrede. 
+            - Pode ser necessário o **gerenciamento de cargas**, desligando as não críticas para manter a estabilidade.
+            """)
+
+    with tab2:
+        st.markdown("### Transições Críticas")
+        st.markdown("A transição suave (*seamless*) entre os modos é fundamental para a estabilidade.")
+        
+        with st.container(border=True):
+            st.markdown("**T1 - Ilhamento Planejado (On-Grid → Off-Grid)**")
+            st.markdown("Ocorre de forma controlada. O controlador da microrrede equilibra a geração e a carga, sinaliza para uma fonte (BESS) assumir o modo *Grid-Forming* e então abre o disjuntor do PCC. ")
+        
+        with st.container(border=True):
+            st.markdown("**T2 - Ilhamento Não Planejado (On-Grid → Off-Grid)**")
+            st.markdown("É uma reação a uma falha na rede principal. O disjuntor do PCC abre automaticamente para proteger a microrrede. A fonte *Grid-Forming* deve assumir o controle instantaneamente para evitar um colapso. Cargas não críticas podem ser desligadas para garantir a estabilidade.")
+
+        with st.container(border=True):
+            st.markdown("**T3 - Reconexão (Off-Grid → On-Grid)**")
+            st.markdown("Antes de se reconectar, o controlador da microrrede deve sincronizar perfeitamente a tensão, a frequência e o ângulo de fase da microrrede com os da rede principal. Após o fechamento do PCC, a fonte *Grid-Forming* retorna ao modo *Grid-Following*. ")
+        
+        with st.container(border=True):
+            st.markdown("**T4 - Black Start (Partida a Frio)**")
+            st.markdown("É a capacidade de reenergizar a microrrede a partir de um desligamento completo (apagão) enquanto está ilhada. O controlador ativa uma fonte *Grid-Forming* (como o BESS) para energizar a rede interna e, em seguida, reconecta as cargas de forma priorizada e sequencial.")
+
+    # --- PAPEL DO BESS ---
+    st.subheader("O Papel Central do BESS na Microrrede")
+    st.markdown("""
+    O BESS é o componente que viabiliza a operação moderna e flexível de uma microrrede:
+    - [cite_start]**Função de Formador de Rede:** O inversor (PCS) de um BESS é a tecnologia ideal para assumir a função de *Grid-Forming*, por sua capacidade de resposta instantânea e controle preciso de tensão e frequência. [cite: 2550]
+    - **Estabilidade e Qualidade de Energia:** Absorve as flutuações rápidas de fontes intermitentes como a solar e a eólica, garantindo uma energia estável e de alta qualidade para as cargas.
+    - **Gerenciamento de Energia:** Permite a arbitragem de energia (armazenar quando barata/abundante, usar quando cara/escassa) e garante o fornecimento contínuo mesmo sem sol ou vento.
+    """)
+    st.image("img/165int2.png", caption="Diagrama unifilar da Microrrede de exemplo", width = 500)
+
