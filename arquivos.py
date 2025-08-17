@@ -532,7 +532,7 @@ def elementos_bess():
         
         A arquitetura do BMS é tipicamente multinível, com unidades de monitoramento locais (BMU ou CSC) reportando para unidades de gerenciamento de nível superior (SBMS ou SBMU), que por sua vez se comunicam com o controlador mestre (RTU ou BMU).
         """)
-        st.image("img/10int1.png", caption="Arquitetura detalhada do sistema de gerenciamento de baterias (BMS)", width = 500)
+        st.image("img/10int1.png", caption="Arquitetura detalhada do sistema de gerenciamento de baterias (BMS)", width = 700)
 
     with st.expander("Desafios de Operação: O 'Efeito Barril'"):
         st.markdown("""
