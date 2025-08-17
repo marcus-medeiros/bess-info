@@ -104,6 +104,44 @@ def peak_shaving_app():
 
 
 def bms():
+    # --- PÁGINA: ANÁLISE DETALHADA DO BMS ---
+    st.header("BMS (Battery Management System): O Guardião das Baterias")
+    st.markdown("""
+    O BMS é um sistema eletrônico indispensável em um BESS, atuando como o cérebro que monitora e gerencia o sistema de baterias em todos os níveis: desde a célula individual até o rack completo. Suas principais metas são garantir a **segurança**, a **confiabilidade e longevidade** do ativo e, consequentemente, a **otimização de custos** ao longo da vida útil do sistema.
+    """)
+
+    # --- RISCOS E CARACTERÍSTICAS DAS BATERIAS DE LÍTIO ---
+    st.subheader("Por que o BMS é Crucial? Riscos e Características das Baterias de Lítio")
+    st.markdown("""
+    Baterias de Íon-Lítio são a tecnologia predominante em BESS devido à sua alta densidade de energia. No entanto, elas possuem características que exigem um gerenciamento rigoroso:
+    - **Alta Densidade de Energia:** Armazenam uma grande quantidade de energia em um volume pequeno.
+    - **Eletrólito Inflamável:** Diferente de baterias com eletrólitos à base de água, o eletrólito das baterias de Íon-Lítio é combustível.
+    
+    A combinação desses fatores significa que uma falha causada por sobrecarga, descarga excessiva, alta corrente ou operação fora da faixa de temperatura permitida pode se tornar um evento perigoso. O BMS é a primeira e mais importante linha de defesa contra esses riscos.
+    """)
+
+    # --- FUGA TÉRMICA ---
+    st.subheader("Falha Crítica: A Fuga Térmica (Thermal Runaway)")
+    st.error("""
+    **A Fuga Térmica é o principal risco de segurança em baterias de Íon-Lítio e a principal falha que o BMS visa prevenir.**
+    """)
+    st.markdown("""
+    - **O que é?** É uma condição de autoaquecimento rápido e imparável, onde uma reação química exotérmica dentro da célula se torna uma cascata. A célula libera toda a sua energia armazenada de forma abrupta e descontrolada.
+    
+    - **Gatilhos:** A fuga térmica pode ser iniciada por:
+        - Sobrecarga ou descarga profunda.
+        - Altas correntes de carga/descarga.
+        - Curto-circuito interno ou externo.
+        - Danos mecânicos (perfuração, esmagamento).
+        - Operação em temperaturas elevadas (o processo de autoaquecimento pode começar entre 70°C e 90°C).
+
+    - **A Cascata de Eventos:**
+        1.  **Aumento Rápido da Temperatura:** A temperatura interna da célula pode disparar, ultrapassando 600°C.
+        2.  **Liberação de Gases Inflamáveis:** O eletrólito superaquecido vaporiza e se decompõe, gerando gases e aumentando drasticamente a pressão interna.
+        3.  **Inchaço e Ventilação:** A célula incha (especialmente as do tipo bolsa ou prismática) e pode romper ou liberar os gases através de válvulas de segurança.
+        4.  **Curto-Circuito Interno:** O separador entre o ânodo e o cátodo derrete, causando um curto-circuito massivo.
+        5.  **Fogo e Explosão:** As altas temperaturas e os gases inflamáveis podem levar à ignição.
+    """)
     # --- PÁGINA: BMS - BALANCEAMENTO ---
     st.header("BMS: Métodos de Balanceamento de Células")
     st.markdown("O balanceamento é uma função crítica do BMS para garantir um Estado de Carga (SoC) uniforme entre todas as células, o que maximiza a capacidade utilizável e a vida útil da bateria. Existem duas abordagens principais: **Passiva** e **Ativa**.")
