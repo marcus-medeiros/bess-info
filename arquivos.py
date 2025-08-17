@@ -259,7 +259,7 @@ def introducao_armazenamento():
     with col1:
         st.markdown("**Evolução no Brasil**")
         st.write("Gráficos históricos demonstram períodos de baixa nos reservatórios, ressaltando a importância de novas formas de armazenamento para a segurança energética.")
-        st.image("img/9int.png", caption="BESS", width = 300)
+        st.image("img/9int.png", caption="BESS", width = 400)
     with col2:
         st.markdown("**Comportamento da Geração Diária**")
         st.write("A análise da geração diária mostra a intermitência de fontes como a solar, que produz apenas durante o dia, e a necessidade de outras fontes para suprir a demanda noturna.")
