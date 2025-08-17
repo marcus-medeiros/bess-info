@@ -553,3 +553,111 @@ def elementos_bess():
         - **Sistema de Combate a Incêndio:** Sistemas de detecção (fumaça, gases) e supressão (geralmente por aerossóis ou gases inertes) projetados especificamente para os riscos associados às baterias.
         - **Sistema de Refrigeração do PCS:** O processo de conversão de energia gera calor, e um sistema de refrigeração (a ar ou líquido, com soluções como etileno-glicol) é vital para manter o PCS operando com eficiência.
         """)
+
+
+def pcs_detalhado():
+    # --- PÁGINA: ANÁLISE DETALHADA DO PCS ---
+    st.header("Análise Detalhada do PCS (Power Conversion System)")
+    st.markdown("""
+    O PCS é o componente ativo que gerencia a interface entre o banco de baterias (Corrente Contínua - CC) e a rede elétrica (Corrente Alternada - CA). Como um conversor estático bidirecional, ele controla tanto a carga quanto a descarga das baterias, sendo fundamental para o funcionamento de todo o BESS.
+    """)
+
+    # --- TOPOLOGIAS E ARQUITETURAS ---
+    st.subheader("Topologias e Arquiteturas de PCS")
+    st.markdown("A forma como o PCS e as baterias são interligados define a arquitetura do sistema, com implicações diretas na eficiência, modularidade e gerenciamento.")
+    st.image("img/29int1.png", caption="Diagrama de classificação das topologias de PCS", width = 500)
+
+    tab1, tab2 = st.tabs(["Estrutura Centralizada", "Estrutura Distribuída"])
+
+    with tab1:
+        st.markdown("#### Estrutura Centralizada")
+        st.markdown("""
+        Nesta topologia, um único PCS de alta potência é conectado a múltiplos racks de baterias que estão associados em paralelo em um barramento CC comum.
+
+        - **Vantagens:**
+            - Geralmente possui maior eficiência, pois há menos estágios de conversão e menos componentes.
+            - Menor custo inicial por quilowatt (kW).
+        - **Desvantagens:**
+            - Vulnerável ao **"Efeito Barril"**: o desempenho geral é limitado pelo rack mais fraco.
+            - Suscetível a **correntes de circulação** entre os racks, que geram perdas e podem acelerar a degradação das baterias.
+            - Representa um **ponto único de falha**: se o PCS central falhar, todo o sistema para.
+        """)
+        st.image("img/30int1.png", caption="Diagrama de PCS com estrutura centralizada", width = 500)
+
+    with tab2:
+        st.markdown("#### Estrutura Distribuída")
+        st.markdown("""
+        Nesta abordagem, são utilizados vários PCS de menor potência, onde cada um se conecta a um único rack ou a um pequeno grupo de racks.
+
+        - **Vantagens:**
+            - **Modularidade:** Facilita a expansão do sistema.
+            - **Confiabilidade:** A falha de um PCS não derruba todo o sistema.
+            - **Melhor Gerenciamento:** Mitiga o "Efeito Barril" e elimina as correntes de circulação, pois cada rack é controlado individualmente, aumentando a vida útil e a capacidade utilizável das baterias.
+        - **Desvantagens:**
+            - **Eficiência Menor:** A eficiência global tende a ser ligeiramente menor devido às perdas em múltiplos conversores.
+            - **Custo e Complexidade:** Pode ter um custo inicial maior e exigir um controle mais complexo para sincronizar os múltiplos PCS no lado CA.
+        """)
+        st.image("img/33int1.png", caption="Diagrama de PCS com estrutura distribuída de estágio único", width = 500)
+        st.markdown("Uma variação é a **estrutura de duplo estágio (CC/CC + CC/CA)**, que simplifica o controle ao criar um barramento CC comum, mas introduz perdas adicionais devido ao segundo estágio de conversão.")
+        st.image("img/37int1.png", caption="Diagrama de PCS com estrutura distribuída de duplo estágio", width = 500)
+
+    # --- TECNOLOGIAS DE CONVERSORES ---
+    st.subheader("Tecnologias de Conversores")
+    st.markdown("A eletrônica de potência dentro do PCS determina suas capacidades. As tecnologias podem ser divididas principalmente em conversores de dois níveis e multiníveis.")
+
+    with st.expander("Conversores de Dois Níveis (VSC)"):
+        st.markdown("""
+        Esta é a topologia tradicional e mais simples, onde a saída de tensão CA alterna entre dois níveis (+Vcc e -Vcc). O **VSC (Voltage Source Converter)** é o mais comum.
+        - **Característica:** A tensão CA de saída é sempre menor que a tensão CC de entrada. Por isso, quase sempre necessita de um **transformador elevador** para se conectar a redes de média ou alta tensão.
+        - **Vantagens:** Simplicidade e custo mais baixo.
+        - **Desvantagens:** Gera uma onda CA com mais harmônicos, exigindo filtros maiores. A necessidade do transformador adiciona custo, tamanho e perdas ao sistema.
+        """)
+        st.image("img/43int1.png", caption="Diagrama de um BESS com conversor de dois níveis (VSC) e transformador", width = 500)
+
+    with st.expander("Conversores Multiníveis"):
+        st.markdown("""
+        Tecnologias mais avançadas que geram uma tensão de saída com múltiplos degraus (níveis), criando uma forma de onda muito mais próxima de uma senóide perfeita.
+        - **Vantagens:**
+            - **Qualidade de Energia Superior:** Menor distorção harmônica, exigindo filtros menores.
+            - **Maior Tensão de Operação:** Permitem a conexão direta a redes de média tensão, eliminando a necessidade de um transformador e suas perdas associadas.
+        - **Principais Tipos:**
+            - **NPC (Neutral-Point Clamped):** Topologia popular para 3 níveis, mas o balanceamento dos capacitores do barramento CC torna-se um desafio em configurações com mais níveis.
+            - **CHB (Cascaded H-Bridge):** Altamente modular, ideal para BESS. Cada "ponte H" é um módulo conversor que se conecta a um módulo de bateria isolado. Ao conectar vários em série, alcançam-se altas tensões com excelente qualidade.
+        """)
+        st.image("img/55int1.png", caption="Diagrama de um conversor multinível em cascata (CHB)", width = 500)
+
+    # --- MODULAÇÃO E CONTROLE ---
+    st.subheader("Modulação PWM: Gerando a Onda Senoidal")
+    st.markdown("""
+    Para que o PCS gere uma onda CA a partir da tensão CC das baterias, ele utiliza uma técnica de controle chamada **Modulação por Largura de Pulso (PWM)**. Ela consiste em ligar e desligar os semicondutores (IGBTs) em alta frequência, "esculpindo" a tensão de saída para que sua média se pareça com uma senóide.
+    """)
+    st.image("img/67int1.png", caption="Diagrama conceitual do funcionamento do PWM", width = 500)
+    
+    col_ma, col_mf = st.columns(2)
+    with col_ma:
+        st.info("Índice de Modulação de Amplitude ($m_a$)")
+        st.markdown(r"""
+        Controla a amplitude (tensão) da onda senoidal de saída.
+        - É a razão entre a amplitude do sinal de referência (senóide) e o sinal da portadora (triangular): $m_a = \frac{\hat{V}_{referencia}}{\hat{V}_{portadora}}$
+        - Para $m_a \le 1$ (região linear), a tensão de saída é diretamente proporcional a $m_a$.
+        - Para $m_a > 1$ (**sobremodulação**), a tensão de saída aumenta, mas de forma não linear, e a qualidade da onda piora (mais harmônicos).
+        """)
+
+    with col_mf:
+        st.info("Índice de Modulação de Frequência ($m_f$)")
+        st.markdown(r"""
+        Controla a frequência de chaveamento dos semicondutores.
+        - É a razão entre a frequência da portadora e a frequência da referência: $m_f = \frac{f_{portadora}}{f_{referencia}}$
+        - **Trade-off:** Um $m_f$ alto (alta frequência de chaveamento) resulta em menos harmônicos e filtros menores, mas aumenta as **perdas por comutação** no PCS, reduzindo a eficiência.
+        """)
+
+    # --- PERDAS E EFICIÊNCIA ---
+    st.subheader("Perdas e Eficiência do PCS")
+    st.markdown("""
+    A eficiência de um PCS (e do BESS como um todo) é impactada por diversas fontes de perdas:
+    - **Perdas por Comutação:** Ocorrem cada vez que um semicondutor (IGBT) liga ou desliga. Aumentam com a frequência de chaveamento (PWM).
+    - **Perdas por Condução:** Perdas resistivas nos semicondutores e componentes passivos sempre que a corrente flui por eles.
+    - **Perdas na Topologia:** Arquiteturas com mais estágios de conversão (ex: distribuída de duplo estágio) são inerentemente menos eficientes.
+    - **Perdas no Transformador:** Se presente, o transformador pode ser responsável por perdas de até 4% da energia processada. A eliminação deste componente com conversores multiníveis é uma grande vantagem.
+    - **Perdas em Sistemas Auxiliares:** Energia consumida pelos próprios sistemas de controle, refrigeração do PCS, ventilação, etc.
+    """)
