@@ -778,7 +778,7 @@ def microredes():
 
 def aplicacoes_bess():
     # --- PÁGINA: APLICAÇÕES DO BESS ---
-    st.header("Aplicações e Serviços do BESS s2")
+    st.header("Aplicações e Serviços do BESS")
     st.markdown("""
     A grande versatilidade é uma das principais vantagens dos sistemas de armazenamento com baterias (BESS). Eles podem ser instalados em praticamente qualquer ponto da rede elétrica, oferecendo uma vasta gama de serviços para diferentes stakeholders. As aplicações podem ser divididas em quatro segmentos principais: **Atrás do Medidor (Consumidor)**, **Geração**, **Transmissão** e **Distribuição**.
     """)
