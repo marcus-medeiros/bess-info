@@ -1,19 +1,5 @@
-# 🎈 Blank app template
+# BESS - Battery Energy Storage System
 
-A simple Streamlit app template for you to modify!
+:zap: Esse repositório têm como objetivo armazenas informações relevantes sobre essa tecnologia de armazenamento de energia em ascenção.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
 
-### How to run it on your own machine
-
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
-   ```
-
-2. Run the app
-
-   ```
-   $ streamlit run streamlit_app.py
-   ```
